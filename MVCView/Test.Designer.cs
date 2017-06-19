@@ -72,6 +72,7 @@
             this.tvListTram.Name = "tvListTram";
             this.tvListTram.Size = new System.Drawing.Size(210, 352);
             this.tvListTram.TabIndex = 1;
+            this.tvListTram.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.tvListTram_NodeMouseDoubleClick);
             // 
             // lblTitle
             // 

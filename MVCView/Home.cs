@@ -37,5 +37,21 @@ namespace MVCView
         {
             IsMdiContainer = true;
         }
+
+        private void menuMetadata_User_Click(object sender, EventArgs e)
+        {
+            FrmUser frm = new FrmUser();
+            frm.MdiParent = this;
+            frm.Dock = DockStyle.Fill;
+            frm.Show();     
+        }
+
+        private void menuSetting_Alert_Click(object sender, EventArgs e)
+        {
+            FrmAlert frm = new FrmAlert();
+            frm.MdiParent = this;
+            frm.Dock = DockStyle.Fill;
+            frm.Show();     
+        }
     }
 }

@@ -78,6 +78,7 @@
             this.menuMetadata_User.Name = "menuMetadata_User";
             this.menuMetadata_User.Size = new System.Drawing.Size(180, 22);
             this.menuMetadata_User.Text = "Quản lý người dùng";
+            this.menuMetadata_User.Click += new System.EventHandler(this.menuMetadata_User_Click);
             // 
             // menuMetadata_Device
             // 
@@ -141,6 +142,7 @@
             this.menuSetting_Alert.Name = "menuSetting_Alert";
             this.menuSetting_Alert.Size = new System.Drawing.Size(152, 22);
             this.menuSetting_Alert.Text = "Báo động";
+            this.menuSetting_Alert.Click += new System.EventHandler(this.menuSetting_Alert_Click);
             // 
             // Home
             // 
