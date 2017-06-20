@@ -42,6 +42,12 @@ namespace MVCView.Metadta.Device
                 da.Fill(dt);
                 dgvList.DataSource = dt;
                 dgvList.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader);
+
+                DataGridViewImageColumn delbut = new DataGridViewImageColumn();
+                delbut.Image = Image.FromFile(Environment.CurrentDirectory + "/images/delicon.png");
+                delbut.Width = 20;
+                delbut.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                dgvList.Columns.Add(delbut);
             }
             catch (Exception)
             {
