@@ -28,15 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmDeviceList));
             this.lblTitle = new System.Windows.Forms.Label();
             this.dgvList = new System.Windows.Forms.DataGridView();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TENTB = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TENKV = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.status = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Lat = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Lng = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.action = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gbSearch = new System.Windows.Forms.GroupBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -45,9 +40,23 @@
             this.lblDeviceCode = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.lblDeviceName = new System.Windows.Forms.Label();
-            this.btnAdd = new System.Windows.Forms.Button();
+            this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
+            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
+            this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
+            this.bindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
+            this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.addIcon = new System.Windows.Forms.ToolStripButton();
+            this.delIcon = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
+            this.editIcon = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgvList)).BeginInit();
             this.gbSearch.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
+            this.bindingNavigator1.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblTitle
@@ -63,58 +72,17 @@
             // 
             // dgvList
             // 
+            this.dgvList.AllowUserToAddRows = false;
             this.dgvList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ID,
-            this.TENTB,
-            this.TENKV,
-            this.status,
-            this.Lat,
-            this.Lng,
-            this.action});
             this.dgvList.Location = new System.Drawing.Point(12, 240);
             this.dgvList.Name = "dgvList";
+            this.dgvList.ReadOnly = true;
             this.dgvList.Size = new System.Drawing.Size(786, 263);
             this.dgvList.TabIndex = 1;
-            // 
-            // ID
-            // 
-            this.ID.HeaderText = "Mã TB";
-            this.ID.Name = "ID";
-            // 
-            // TENTB
-            // 
-            this.TENTB.HeaderText = "Tên TB";
-            this.TENTB.Name = "TENTB";
-            // 
-            // TENKV
-            // 
-            this.TENKV.HeaderText = "Tên KV";
-            this.TENKV.Name = "TENKV";
-            // 
-            // status
-            // 
-            this.status.HeaderText = "Trạng Thái";
-            this.status.Name = "status";
-            // 
-            // Lat
-            // 
-            this.Lat.HeaderText = "Latitude";
-            this.Lat.Name = "Lat";
-            // 
-            // Lng
-            // 
-            this.Lng.HeaderText = "Longitude";
-            this.Lng.Name = "Lng";
-            // 
-            // action
-            // 
-            this.action.HeaderText = "Thao tác";
-            this.action.Name = "action";
             // 
             // gbSearch
             // 
@@ -159,9 +127,9 @@
             this.lblStatus.AutoSize = true;
             this.lblStatus.Location = new System.Drawing.Point(37, 73);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(67, 16);
+            this.lblStatus.Size = new System.Drawing.Size(76, 16);
             this.lblStatus.TabIndex = 0;
-            this.lblStatus.Text = "Trạng thái";
+            this.lblStatus.Text = "Trạng thái :";
             // 
             // textBox2
             // 
@@ -175,9 +143,9 @@
             this.lblDeviceCode.AutoSize = true;
             this.lblDeviceCode.Location = new System.Drawing.Point(381, 25);
             this.lblDeviceCode.Name = "lblDeviceCode";
-            this.lblDeviceCode.Size = new System.Drawing.Size(44, 16);
+            this.lblDeviceCode.Size = new System.Drawing.Size(66, 16);
             this.lblDeviceCode.TabIndex = 0;
-            this.lblDeviceCode.Text = "Mã KV";
+            this.lblDeviceCode.Text = "Mã hiệu : ";
             // 
             // textBox1
             // 
@@ -191,27 +159,141 @@
             this.lblDeviceName.AutoSize = true;
             this.lblDeviceName.Location = new System.Drawing.Point(37, 23);
             this.lblDeviceName.Name = "lblDeviceName";
-            this.lblDeviceName.Size = new System.Drawing.Size(73, 16);
+            this.lblDeviceName.Size = new System.Drawing.Size(82, 16);
             this.lblDeviceName.TabIndex = 0;
-            this.lblDeviceName.Text = "Tên thiết bị";
+            this.lblDeviceName.Text = "Tên thiết bị :";
             // 
-            // btnAdd
+            // bindingNavigator1
             // 
-            this.btnAdd.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.Location = new System.Drawing.Point(701, 197);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(90, 37);
-            this.btnAdd.TabIndex = 4;
-            this.btnAdd.Text = "Thêm mới";
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            this.bindingNavigator1.AddNewItem = this.addIcon;
+            this.bindingNavigator1.CountItem = this.bindingNavigatorCountItem;
+            this.bindingNavigator1.DeleteItem = this.delIcon;
+            this.bindingNavigator1.Dock = System.Windows.Forms.DockStyle.None;
+            this.bindingNavigator1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.bindingNavigatorMoveFirstItem,
+            this.bindingNavigatorMovePreviousItem,
+            this.bindingNavigatorSeparator,
+            this.bindingNavigatorPositionItem,
+            this.bindingNavigatorCountItem,
+            this.bindingNavigatorSeparator1,
+            this.bindingNavigatorMoveNextItem,
+            this.bindingNavigatorMoveLastItem,
+            this.bindingNavigatorSeparator2,
+            this.addIcon,
+            this.editIcon,
+            this.delIcon});
+            this.bindingNavigator1.Location = new System.Drawing.Point(12, 212);
+            this.bindingNavigator1.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
+            this.bindingNavigator1.MoveLastItem = this.bindingNavigatorMoveLastItem;
+            this.bindingNavigator1.MoveNextItem = this.bindingNavigatorMoveNextItem;
+            this.bindingNavigator1.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
+            this.bindingNavigator1.Name = "bindingNavigator1";
+            this.bindingNavigator1.PositionItem = this.bindingNavigatorPositionItem;
+            this.bindingNavigator1.Size = new System.Drawing.Size(278, 25);
+            this.bindingNavigator1.TabIndex = 42;
+            this.bindingNavigator1.Text = "bindingNavigator1";
+            // 
+            // bindingNavigatorCountItem
+            // 
+            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(35, 22);
+            this.bindingNavigatorCountItem.Text = "of {0}";
+            this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
+            // 
+            // bindingNavigatorSeparator
+            // 
+            this.bindingNavigatorSeparator.Name = "bindingNavigatorSeparator";
+            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 25);
+            // 
+            // bindingNavigatorPositionItem
+            // 
+            this.bindingNavigatorPositionItem.AccessibleName = "Position";
+            this.bindingNavigatorPositionItem.AutoSize = false;
+            this.bindingNavigatorPositionItem.Name = "bindingNavigatorPositionItem";
+            this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(50, 23);
+            this.bindingNavigatorPositionItem.Text = "0";
+            this.bindingNavigatorPositionItem.ToolTipText = "Current position";
+            // 
+            // bindingNavigatorSeparator1
+            // 
+            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
+            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // bindingNavigatorSeparator2
+            // 
+            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
+            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // addIcon
+            // 
+            this.addIcon.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.addIcon.Image = ((System.Drawing.Image)(resources.GetObject("addIcon.Image")));
+            this.addIcon.Name = "addIcon";
+            this.addIcon.RightToLeftAutoMirrorImage = true;
+            this.addIcon.Size = new System.Drawing.Size(23, 22);
+            this.addIcon.Text = "Add new";
+            this.addIcon.Click += new System.EventHandler(this.addIcon_Click);
+            // 
+            // delIcon
+            // 
+            this.delIcon.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.delIcon.Image = ((System.Drawing.Image)(resources.GetObject("delIcon.Image")));
+            this.delIcon.Name = "delIcon";
+            this.delIcon.RightToLeftAutoMirrorImage = true;
+            this.delIcon.Size = new System.Drawing.Size(23, 22);
+            this.delIcon.Text = "Delete";
+            // 
+            // bindingNavigatorMoveFirstItem
+            // 
+            this.bindingNavigatorMoveFirstItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
+            this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
+            this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorMoveFirstItem.Text = "Move first";
+            // 
+            // bindingNavigatorMovePreviousItem
+            // 
+            this.bindingNavigatorMovePreviousItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
+            this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
+            this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorMovePreviousItem.Text = "Move previous";
+            // 
+            // bindingNavigatorMoveNextItem
+            // 
+            this.bindingNavigatorMoveNextItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
+            this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
+            this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorMoveNextItem.Text = "Move next";
+            // 
+            // bindingNavigatorMoveLastItem
+            // 
+            this.bindingNavigatorMoveLastItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
+            this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
+            this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorMoveLastItem.Text = "Move last";
+            // 
+            // editIcon
+            // 
+            this.editIcon.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.editIcon.Image = global::MVCView.Properties.Resources.editIcon;
+            this.editIcon.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.editIcon.Name = "editIcon";
+            this.editIcon.Size = new System.Drawing.Size(23, 22);
+            this.editIcon.Text = "Edit";
             // 
             // FrmDeviceList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(803, 525);
-            this.Controls.Add(this.btnAdd);
+            this.Controls.Add(this.bindingNavigator1);
             this.Controls.Add(this.gbSearch);
             this.Controls.Add(this.dgvList);
             this.Controls.Add(this.lblTitle);
@@ -222,6 +304,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvList)).EndInit();
             this.gbSearch.ResumeLayout(false);
             this.gbSearch.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
+            this.bindingNavigator1.ResumeLayout(false);
+            this.bindingNavigator1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -239,13 +324,18 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label lblDeviceName;
         private System.Windows.Forms.Button btnSearch;
-        private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TENTB;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TENKV;
-        private System.Windows.Forms.DataGridViewTextBoxColumn status;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Lat;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Lng;
-        private System.Windows.Forms.DataGridViewTextBoxColumn action;
+        private System.Windows.Forms.BindingNavigator bindingNavigator1;
+        private System.Windows.Forms.ToolStripButton addIcon;
+        private System.Windows.Forms.ToolStripLabel bindingNavigatorCountItem;
+        private System.Windows.Forms.ToolStripButton delIcon;
+        private System.Windows.Forms.ToolStripButton bindingNavigatorMoveFirstItem;
+        private System.Windows.Forms.ToolStripButton bindingNavigatorMovePreviousItem;
+        private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator;
+        private System.Windows.Forms.ToolStripTextBox bindingNavigatorPositionItem;
+        private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator1;
+        private System.Windows.Forms.ToolStripButton bindingNavigatorMoveNextItem;
+        private System.Windows.Forms.ToolStripButton bindingNavigatorMoveLastItem;
+        private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
+        private System.Windows.Forms.ToolStripButton editIcon;
     }
 }

@@ -57,7 +57,7 @@ namespace MVCView
             bs = new BindingSource();
             bs.DataSource = dt;
             bindingNavigator1.BindingSource = bs;
-            dgvList.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+            dgvList.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader);
         }
 
          
@@ -103,7 +103,7 @@ namespace MVCView
             txtFirstName.Enabled = false;
             txtLastName.Enabled = false;
             txtPassword.Enabled = false;
-            txtId.Enabled = false;
+            txtEmail.Enabled = false;
             txtRePassword.Enabled = false;
         }
 
@@ -113,7 +113,7 @@ namespace MVCView
             txtFirstName.Enabled = true;
             txtLastName.Enabled = true;
             txtPassword.Enabled = true;
-            txtId.Enabled = true;
+            txtEmail.Enabled = true;
             txtRePassword.Enabled = true;
         }
 
@@ -123,6 +123,7 @@ namespace MVCView
             txtFirstName.Clear();
             txtLastName.Clear();
             txtPassword.Clear();
+            txtEmail.Clear();
             txtId.Clear();
             txtRePassword.Clear();
         }
@@ -137,14 +138,14 @@ namespace MVCView
                     if (txtId.Text != "")
                     {
                         EditUser();
-
                     }
                     else {
+                        clearText();
+                        enable();
                         AddUser();
+                        disable();
                     }
                     
-                    con.Close();
-                    disable();
                     loadUser();
                 }
             }
@@ -170,7 +171,7 @@ namespace MVCView
             uName.Value = txtUserName.Text;
             fName.Value = txtFirstName.Text;
             lName.Value = txtLastName.Text;
-            email.Value = txtId.Text;
+            email.Value = txtEmail.Text;
             roleId.Value = cbRole.SelectedValue;
             userId.Value = Int32.Parse(txtId.Text);
 
@@ -275,6 +276,7 @@ namespace MVCView
         {
             try
             {
+                clearText();
                 enable();                
             }
             catch (Exception ex)
@@ -317,12 +319,14 @@ namespace MVCView
 
         private void dgvList_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridViewRow row = this.dgvList.Rows[e.RowIndex];
-            txtId.Text = row.Cells[0].Value.ToString();
-            txtUserName.Text = row.Cells[1].Value.ToString();
-            txtFirstName.Text = row.Cells[2].Value.ToString();
-            txtLastName.Text = row.Cells[3].Value.ToString();
-            txtId.Text = row.Cells[4].Value.ToString();
+            if (e.RowIndex >= 0) {
+                DataGridViewRow row = this.dgvList.Rows[e.RowIndex];
+                txtId.Text = row.Cells[0].Value.ToString();
+                txtUserName.Text = row.Cells[1].Value.ToString();
+                txtFirstName.Text = row.Cells[2].Value.ToString();
+                txtLastName.Text = row.Cells[3].Value.ToString();
+                txtEmail.Text = row.Cells[4].Value.ToString();
+            }
         }
     }
 }
