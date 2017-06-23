@@ -33,23 +33,28 @@ namespace MVCView.Metadta.Device
                 con = new SqlConnection(cs);
                 con.Open();
                 // Build the SQL string
-                StringBuilder mySql = new StringBuilder(" SELECT tb.ID, kv.TENKV, tb.status, tb.Latitude, tb.Longitude  ");
-                mySql.Append(" FROM DANHSACHTB tb ");
-                mySql.Append(" LEFT JOIN KHUVUC kv ON tb.MAKV = kv.ID ");
-                mySql.Append(" WHERE tb.ISSHOW = 1 ");
+                StringBuilder mySql = new StringBuilder(" SELECT * ");
+                mySql.Append(" FROM Device d ");       
                 SqlCommand query = new SqlCommand(mySql.ToString());
                 query.Connection = con;
                 SqlDataAdapter da = new SqlDataAdapter(query);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
                 dgvList.DataSource = dt;
+
+                BindingSource bs = new BindingSource();
+                DataSet dset = new DataSet();
+                da.Fill(dset);
+                bs = new BindingSource();
+                bs.DataSource = dt;
+                bindingNavigator1.BindingSource = bs;
+
                 dgvList.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader);
 
-                DataGridViewImageColumn delbut = new DataGridViewImageColumn();
-                delbut.Image = Image.FromFile(Environment.CurrentDirectory + "/images/delicon.png");
-                delbut.Width = 20;
-                delbut.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-                dgvList.Columns.Add(delbut);
+                //DataGridViewImageColumn delbut = new DataGridViewImageColumn();
+                //delbut.Width = 20;
+                //delbut.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                //dgvList.Columns.Add(delbut);
             }
             catch (Exception)
             {
@@ -91,6 +96,12 @@ namespace MVCView.Metadta.Device
         private void btnAdd_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void addIcon_Click(object sender, EventArgs e)
+        {
+            FrmEditDevice frm = new FrmEditDevice();
+            frm.ShowDialog();
         }
     }
 }
