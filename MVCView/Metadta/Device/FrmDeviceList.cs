@@ -26,6 +26,8 @@ namespace MVCView.Metadta.Device
 
         private void FrmDeviceList_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'scadaReceiveValueDataSet.Device' table. You can move, or remove it, as needed.
+            this.deviceTableAdapter.Fill(this.scadaReceiveValueDataSet.Device);
             try
             {
                 con = new SqlConnection(cs);
@@ -67,7 +69,7 @@ namespace MVCView.Metadta.Device
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
-        {
+        {            
             try
             {
                 //MailMessage mail = new MailMessage();
