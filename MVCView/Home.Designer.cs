@@ -107,26 +107,26 @@
             // menuTram_MapView
             // 
             this.menuTram_MapView.Name = "menuTram_MapView";
-            this.menuTram_MapView.Size = new System.Drawing.Size(139, 22);
-            this.menuTram_MapView.Text = "Map view";
+            this.menuTram_MapView.Size = new System.Drawing.Size(203, 22);
+            this.menuTram_MapView.Text = "Quản lý trạm trên đồ thị";
             this.menuTram_MapView.Click += new System.EventHandler(this.menuTram_MapView_Click);
             // 
             // menuTram_TableView
             // 
             this.menuTram_TableView.Name = "menuTram_TableView";
-            this.menuTram_TableView.Size = new System.Drawing.Size(139, 22);
-            this.menuTram_TableView.Text = "Table view";
+            this.menuTram_TableView.Size = new System.Drawing.Size(203, 22);
+            this.menuTram_TableView.Text = "Quản lý trạm dạng bảng";
             // 
             // menuTram_SystemView
             // 
             this.menuTram_SystemView.Name = "menuTram_SystemView";
-            this.menuTram_SystemView.Size = new System.Drawing.Size(139, 22);
+            this.menuTram_SystemView.Size = new System.Drawing.Size(203, 22);
             this.menuTram_SystemView.Text = "System view";
             // 
             // menuTram_QuickView
             // 
             this.menuTram_QuickView.Name = "menuTram_QuickView";
-            this.menuTram_QuickView.Size = new System.Drawing.Size(139, 22);
+            this.menuTram_QuickView.Size = new System.Drawing.Size(203, 22);
             this.menuTram_QuickView.Text = "Quick view";
             // 
             // menuSetting
@@ -134,8 +134,8 @@
             this.menuSetting.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuSetting_Alert});
             this.menuSetting.Name = "menuSetting";
-            this.menuSetting.Size = new System.Drawing.Size(56, 20);
-            this.menuSetting.Text = "Cài đặt";
+            this.menuSetting.Size = new System.Drawing.Size(154, 20);
+            this.menuSetting.Text = "Quản lý sự kiện báo động";
             // 
             // menuSetting_Alert
             // 

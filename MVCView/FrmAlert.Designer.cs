@@ -69,7 +69,7 @@
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.lblTitle.Location = new System.Drawing.Point(444, 9);
+            this.lblTitle.Location = new System.Drawing.Point(70, 18);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(172, 23);
             this.lblTitle.TabIndex = 1;
@@ -87,7 +87,7 @@
             // txtId
             // 
             this.txtId.Enabled = false;
-            this.txtId.Location = new System.Drawing.Point(78, 19);
+            this.txtId.Location = new System.Drawing.Point(100, 21);
             this.txtId.Name = "txtId";
             this.txtId.Size = new System.Drawing.Size(186, 20);
             this.txtId.TabIndex = 44;
@@ -140,15 +140,15 @@
             // 
             // txtName
             // 
-            this.txtName.Location = new System.Drawing.Point(375, 19);
+            this.txtName.Location = new System.Drawing.Point(100, 54);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(196, 20);
+            this.txtName.Size = new System.Drawing.Size(186, 20);
             this.txtName.TabIndex = 30;
             // 
             // textUserName
             // 
             this.textUserName.AutoSize = true;
-            this.textUserName.Location = new System.Drawing.Point(293, 22);
+            this.textUserName.Location = new System.Drawing.Point(11, 55);
             this.textUserName.Name = "textUserName";
             this.textUserName.Size = new System.Drawing.Size(66, 13);
             this.textUserName.TabIndex = 29;
@@ -161,11 +161,11 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(709, 155);
+            this.btnCancel.Location = new System.Drawing.Point(259, 165);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(97, 23);
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 47;
-            this.btnCancel.Text = "&Cancel";
+            this.btnCancel.Text = "&Hủy";
             // 
             // delIcon
             // 
@@ -257,19 +257,21 @@
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(709, 97);
+            this.btnUpdate.Location = new System.Drawing.Point(345, 165);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(97, 23);
+            this.btnUpdate.Size = new System.Drawing.Size(75, 23);
             this.btnUpdate.TabIndex = 43;
-            this.btnUpdate.Text = "&Update";
+            this.btnUpdate.Text = "&Lưu";
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // grpDetails
             // 
+            this.grpDetails.Controls.Add(this.btnCancel);
             this.grpDetails.Controls.Add(this.cbType);
             this.grpDetails.Controls.Add(this.txtDescription);
-            this.grpDetails.Controls.Add(this.label3);
             this.grpDetails.Controls.Add(this.label1);
+            this.grpDetails.Controls.Add(this.btnUpdate);
+            this.grpDetails.Controls.Add(this.label3);
             this.grpDetails.Controls.Add(this.cbStatus);
             this.grpDetails.Controls.Add(this.lblRole);
             this.grpDetails.Controls.Add(this.txtId);
@@ -279,49 +281,51 @@
             this.grpDetails.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.grpDetails.Location = new System.Drawing.Point(74, 53);
             this.grpDetails.Name = "grpDetails";
-            this.grpDetails.Size = new System.Drawing.Size(592, 170);
+            this.grpDetails.Size = new System.Drawing.Size(629, 196);
             this.grpDetails.TabIndex = 44;
             this.grpDetails.TabStop = false;
-            this.grpDetails.Text = "Register new user :";
+            this.grpDetails.Text = "Tạo sự kiện báo động:";
             // 
             // cbType
             // 
             this.cbType.FormattingEnabled = true;
-            this.cbType.Location = new System.Drawing.Point(375, 52);
+            this.cbType.Location = new System.Drawing.Point(100, 89);
             this.cbType.Name = "cbType";
-            this.cbType.Size = new System.Drawing.Size(196, 21);
+            this.cbType.Size = new System.Drawing.Size(186, 21);
             this.cbType.TabIndex = 51;
+            this.cbType.SelectedIndexChanged += new System.EventHandler(this.cbType_SelectedIndexChanged);
             // 
             // txtDescription
             // 
-            this.txtDescription.Location = new System.Drawing.Point(78, 90);
+            this.txtDescription.Location = new System.Drawing.Point(382, 22);
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(493, 61);
+            this.txtDescription.Size = new System.Drawing.Size(205, 58);
             this.txtDescription.TabIndex = 50;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(9, 91);
+            this.label3.Location = new System.Drawing.Point(324, 26);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(53, 13);
+            this.label3.Size = new System.Drawing.Size(37, 13);
             this.label3.TabIndex = 49;
-            this.label3.Text = "Nội dung:";
+            this.label3.Text = "Mô tả:";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(293, 55);
+            this.label1.Location = new System.Drawing.Point(12, 91);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(79, 13);
             this.label1.TabIndex = 47;
             this.label1.Text = "Loại báo động:";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // cbStatus
             // 
             this.cbStatus.FormattingEnabled = true;
-            this.cbStatus.Location = new System.Drawing.Point(78, 52);
+            this.cbStatus.Location = new System.Drawing.Point(100, 125);
             this.cbStatus.Name = "cbStatus";
             this.cbStatus.Size = new System.Drawing.Size(186, 21);
             this.cbStatus.TabIndex = 46;
@@ -329,7 +333,7 @@
             // lblRole
             // 
             this.lblRole.AutoSize = true;
-            this.lblRole.Location = new System.Drawing.Point(9, 55);
+            this.lblRole.Location = new System.Drawing.Point(12, 128);
             this.lblRole.Name = "lblRole";
             this.lblRole.Size = new System.Drawing.Size(58, 13);
             this.lblRole.TabIndex = 45;
@@ -340,14 +344,12 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1041, 547);
-            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.bindingNavigator1);
             this.Controls.Add(this.dgvList);
-            this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.grpDetails);
             this.Controls.Add(this.lblTitle);
             this.Name = "FrmAlert";
-            this.Text = "FrmAlert";
+            this.Text = "Quản lý sự kiện báo động";
             this.Load += new System.EventHandler(this.FrmAlert_Load);
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
             this.bindingNavigator1.ResumeLayout(false);

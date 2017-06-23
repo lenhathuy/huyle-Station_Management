@@ -86,5 +86,15 @@ namespace MVCView
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

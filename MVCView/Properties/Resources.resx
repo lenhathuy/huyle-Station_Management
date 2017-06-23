@@ -127,4 +127,10 @@
   <data name="editIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\editIcon1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="12295337_541123546039978_7586198331169351249_n" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\12295337_541123546039978_7586198331169351249_n.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="18010819_1215718668536747_4705220284574963347_n" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\18010819_1215718668536747_4705220284574963347_n.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

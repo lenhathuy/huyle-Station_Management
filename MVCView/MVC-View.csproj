@@ -176,6 +176,8 @@
     <None Include="Resources\w0000027.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\12295337_541123546039978_7586198331169351249_n.jpg" />
+    <None Include="Resources\18010819_1215718668536747_4705220284574963347_n.jpg" />
     <Content Include="Resources\delete.jpg" />
     <None Include="Resources\editIcon1.png" />
     <None Include="Resources\delete.png" />

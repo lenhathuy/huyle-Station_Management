@@ -31,23 +31,24 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmUser));
             this.grpDetails = new System.Windows.Forms.GroupBox();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.txtId = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnUpdate = new System.Windows.Forms.Button();
             this.txtLastName = new System.Windows.Forms.TextBox();
+            this.cbRole = new System.Windows.Forms.ComboBox();
+            this.lblRole = new System.Windows.Forms.Label();
+            this.txtPassword = new System.Windows.Forms.TextBox();
+            this.lblPassword = new System.Windows.Forms.Label();
+            this.txtUserName = new System.Windows.Forms.TextBox();
+            this.textUserName = new System.Windows.Forms.Label();
             this.lblLastName = new System.Windows.Forms.Label();
             this.txtRePassword = new System.Windows.Forms.TextBox();
             this.lblRePassword = new System.Windows.Forms.Label();
-            this.txtPassword = new System.Windows.Forms.TextBox();
-            this.lblPassword = new System.Windows.Forms.Label();
-            this.cbRole = new System.Windows.Forms.ComboBox();
-            this.lblRole = new System.Windows.Forms.Label();
-            this.txtUserName = new System.Windows.Forms.TextBox();
-            this.textUserName = new System.Windows.Forms.Label();
             this.txtFirstName = new System.Windows.Forms.TextBox();
             this.lblFirstName = new System.Windows.Forms.Label();
-            this.btnUpdate = new System.Windows.Forms.Button();
             this.dgvList = new System.Windows.Forms.DataGridView();
             this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
             this.addIcon = new System.Windows.Forms.ToolStripButton();
@@ -62,7 +63,6 @@
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.editIcon = new System.Windows.Forms.ToolStripButton();
-            this.btnCancel = new System.Windows.Forms.Button();
             this.grpDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
@@ -71,20 +71,22 @@
             // 
             // grpDetails
             // 
+            this.grpDetails.Controls.Add(this.btnCancel);
             this.grpDetails.Controls.Add(this.txtId);
             this.grpDetails.Controls.Add(this.label2);
             this.grpDetails.Controls.Add(this.txtEmail);
             this.grpDetails.Controls.Add(this.label1);
+            this.grpDetails.Controls.Add(this.btnUpdate);
             this.grpDetails.Controls.Add(this.txtLastName);
+            this.grpDetails.Controls.Add(this.cbRole);
+            this.grpDetails.Controls.Add(this.lblRole);
+            this.grpDetails.Controls.Add(this.txtPassword);
+            this.grpDetails.Controls.Add(this.lblPassword);
+            this.grpDetails.Controls.Add(this.txtUserName);
+            this.grpDetails.Controls.Add(this.textUserName);
             this.grpDetails.Controls.Add(this.lblLastName);
             this.grpDetails.Controls.Add(this.txtRePassword);
             this.grpDetails.Controls.Add(this.lblRePassword);
-            this.grpDetails.Controls.Add(this.txtPassword);
-            this.grpDetails.Controls.Add(this.lblPassword);
-            this.grpDetails.Controls.Add(this.cbRole);
-            this.grpDetails.Controls.Add(this.lblRole);
-            this.grpDetails.Controls.Add(this.txtUserName);
-            this.grpDetails.Controls.Add(this.textUserName);
             this.grpDetails.Controls.Add(this.txtFirstName);
             this.grpDetails.Controls.Add(this.lblFirstName);
             this.grpDetails.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
@@ -93,12 +95,21 @@
             this.grpDetails.Size = new System.Drawing.Size(592, 180);
             this.grpDetails.TabIndex = 39;
             this.grpDetails.TabStop = false;
-            this.grpDetails.Text = "Register new user :";
+            this.grpDetails.Text = "Tạo tài khoản mới:";
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(298, 151);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(72, 23);
+            this.btnCancel.TabIndex = 42;
+            this.btnCancel.Text = "&Hủy";
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // txtId
             // 
             this.txtId.Enabled = false;
-            this.txtId.Location = new System.Drawing.Point(78, 19);
+            this.txtId.Location = new System.Drawing.Point(93, 19);
             this.txtId.Name = "txtId";
             this.txtId.Size = new System.Drawing.Size(186, 20);
             this.txtId.TabIndex = 44;
@@ -106,79 +117,49 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 22);
+            this.label2.Location = new System.Drawing.Point(12, 23);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(24, 13);
+            this.label2.Size = new System.Drawing.Size(21, 13);
             this.label2.TabIndex = 43;
-            this.label2.Text = "ID :";
+            this.label2.Text = "ID:";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(375, 99);
+            this.txtEmail.Location = new System.Drawing.Point(391, 117);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(196, 20);
+            this.txtEmail.Size = new System.Drawing.Size(186, 20);
             this.txtEmail.TabIndex = 42;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(293, 102);
+            this.label1.Location = new System.Drawing.Point(319, 120);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(38, 13);
             this.label1.TabIndex = 41;
             this.label1.Text = "Email :";
             // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Location = new System.Drawing.Point(220, 151);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(72, 23);
+            this.btnUpdate.TabIndex = 36;
+            this.btnUpdate.Text = "&Lưu";
+            this.btnUpdate.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
             // txtLastName
             // 
-            this.txtLastName.Location = new System.Drawing.Point(375, 136);
+            this.txtLastName.Location = new System.Drawing.Point(391, 84);
             this.txtLastName.Name = "txtLastName";
-            this.txtLastName.Size = new System.Drawing.Size(196, 20);
+            this.txtLastName.Size = new System.Drawing.Size(186, 20);
             this.txtLastName.TabIndex = 39;
-            // 
-            // lblLastName
-            // 
-            this.lblLastName.Location = new System.Drawing.Point(290, 139);
-            this.lblLastName.Name = "lblLastName";
-            this.lblLastName.Size = new System.Drawing.Size(63, 23);
-            this.lblLastName.TabIndex = 40;
-            this.lblLastName.Text = "Last Name:";
-            // 
-            // txtRePassword
-            // 
-            this.txtRePassword.Location = new System.Drawing.Point(375, 61);
-            this.txtRePassword.Name = "txtRePassword";
-            this.txtRePassword.PasswordChar = '*';
-            this.txtRePassword.Size = new System.Drawing.Size(196, 20);
-            this.txtRePassword.TabIndex = 37;
-            // 
-            // lblRePassword
-            // 
-            this.lblRePassword.Location = new System.Drawing.Point(293, 64);
-            this.lblRePassword.Name = "lblRePassword";
-            this.lblRePassword.Size = new System.Drawing.Size(103, 23);
-            this.lblRePassword.TabIndex = 38;
-            this.lblRePassword.Text = "Re- Password :";
-            // 
-            // txtPassword
-            // 
-            this.txtPassword.Location = new System.Drawing.Point(78, 61);
-            this.txtPassword.Name = "txtPassword";
-            this.txtPassword.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(186, 20);
-            this.txtPassword.TabIndex = 35;
-            // 
-            // lblPassword
-            // 
-            this.lblPassword.Location = new System.Drawing.Point(9, 61);
-            this.lblPassword.Name = "lblPassword";
-            this.lblPassword.Size = new System.Drawing.Size(80, 23);
-            this.lblPassword.TabIndex = 36;
-            this.lblPassword.Text = "Password :";
             // 
             // cbRole
             // 
             this.cbRole.FormattingEnabled = true;
-            this.cbRole.Location = new System.Drawing.Point(78, 99);
+            this.cbRole.Location = new System.Drawing.Point(391, 18);
             this.cbRole.Name = "cbRole";
             this.cbRole.Size = new System.Drawing.Size(186, 21);
             this.cbRole.TabIndex = 34;
@@ -186,51 +167,83 @@
             // lblRole
             // 
             this.lblRole.AutoSize = true;
-            this.lblRole.Location = new System.Drawing.Point(9, 102);
+            this.lblRole.Location = new System.Drawing.Point(318, 22);
             this.lblRole.Name = "lblRole";
-            this.lblRole.Size = new System.Drawing.Size(35, 13);
+            this.lblRole.Size = new System.Drawing.Size(67, 13);
             this.lblRole.TabIndex = 33;
-            this.lblRole.Text = "Role :";
+            this.lblRole.Text = "Phân quyền:";
+            // 
+            // txtPassword
+            // 
+            this.txtPassword.Location = new System.Drawing.Point(93, 84);
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.PasswordChar = '*';
+            this.txtPassword.Size = new System.Drawing.Size(186, 20);
+            this.txtPassword.TabIndex = 35;
+            // 
+            // lblPassword
+            // 
+            this.lblPassword.Location = new System.Drawing.Point(10, 85);
+            this.lblPassword.Name = "lblPassword";
+            this.lblPassword.Size = new System.Drawing.Size(62, 23);
+            this.lblPassword.TabIndex = 36;
+            this.lblPassword.Text = "Mật khẩu:";
             // 
             // txtUserName
             // 
-            this.txtUserName.Location = new System.Drawing.Point(375, 19);
+            this.txtUserName.Location = new System.Drawing.Point(93, 50);
             this.txtUserName.Name = "txtUserName";
-            this.txtUserName.Size = new System.Drawing.Size(196, 20);
+            this.txtUserName.Size = new System.Drawing.Size(186, 20);
             this.txtUserName.TabIndex = 30;
+            this.txtUserName.TextChanged += new System.EventHandler(this.txtUserName_TextChanged);
             // 
             // textUserName
             // 
             this.textUserName.AutoSize = true;
-            this.textUserName.Location = new System.Drawing.Point(293, 22);
+            this.textUserName.Location = new System.Drawing.Point(9, 53);
             this.textUserName.Name = "textUserName";
-            this.textUserName.Size = new System.Drawing.Size(63, 13);
+            this.textUserName.Size = new System.Drawing.Size(76, 13);
             this.textUserName.TabIndex = 29;
-            this.textUserName.Text = "UserName :";
+            this.textUserName.Text = "Tên tài khoản:";
+            // 
+            // lblLastName
+            // 
+            this.lblLastName.Location = new System.Drawing.Point(317, 88);
+            this.lblLastName.Name = "lblLastName";
+            this.lblLastName.Size = new System.Drawing.Size(38, 23);
+            this.lblLastName.TabIndex = 40;
+            this.lblLastName.Text = "Tên:";
+            // 
+            // txtRePassword
+            // 
+            this.txtRePassword.Location = new System.Drawing.Point(93, 116);
+            this.txtRePassword.Name = "txtRePassword";
+            this.txtRePassword.PasswordChar = '*';
+            this.txtRePassword.Size = new System.Drawing.Size(186, 20);
+            this.txtRePassword.TabIndex = 37;
+            // 
+            // lblRePassword
+            // 
+            this.lblRePassword.Location = new System.Drawing.Point(9, 120);
+            this.lblRePassword.Name = "lblRePassword";
+            this.lblRePassword.Size = new System.Drawing.Size(82, 23);
+            this.lblRePassword.TabIndex = 38;
+            this.lblRePassword.Text = "Nhập lại MK:";
             // 
             // txtFirstName
             // 
-            this.txtFirstName.Location = new System.Drawing.Point(78, 136);
+            this.txtFirstName.Location = new System.Drawing.Point(391, 51);
             this.txtFirstName.Name = "txtFirstName";
             this.txtFirstName.Size = new System.Drawing.Size(186, 20);
             this.txtFirstName.TabIndex = 1;
             // 
             // lblFirstName
             // 
-            this.lblFirstName.Location = new System.Drawing.Point(9, 136);
+            this.lblFirstName.Location = new System.Drawing.Point(319, 55);
             this.lblFirstName.Name = "lblFirstName";
-            this.lblFirstName.Size = new System.Drawing.Size(63, 23);
+            this.lblFirstName.Size = new System.Drawing.Size(38, 23);
             this.lblFirstName.TabIndex = 19;
-            this.lblFirstName.Text = "First Name:";
-            // 
-            // btnUpdate
-            // 
-            this.btnUpdate.Location = new System.Drawing.Point(627, 32);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(97, 23);
-            this.btnUpdate.TabIndex = 36;
-            this.btnUpdate.Text = "&Update";
-            this.btnUpdate.Click += new System.EventHandler(this.btnAdd_Click);
+            this.lblFirstName.Text = "Họ:";
             // 
             // dgvList
             // 
@@ -375,27 +388,16 @@
             this.editIcon.Text = "Edit";
             this.editIcon.Click += new System.EventHandler(this.editIcon_Click);
             // 
-            // btnCancel
-            // 
-            this.btnCancel.Location = new System.Drawing.Point(627, 84);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(97, 23);
-            this.btnCancel.TabIndex = 42;
-            this.btnCancel.Text = "&Cancel";
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
             // FrmUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 513);
-            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.bindingNavigator1);
             this.Controls.Add(this.dgvList);
             this.Controls.Add(this.grpDetails);
-            this.Controls.Add(this.btnUpdate);
             this.Name = "FrmUser";
-            this.Text = "FrmUser";
+            this.Text = "Quản lý người dùng";
             this.Load += new System.EventHandler(this.FrmUser_Load);
             this.grpDetails.ResumeLayout(false);
             this.grpDetails.PerformLayout();

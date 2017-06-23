@@ -63,6 +63,26 @@ namespace MVCView.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _12295337_541123546039978_7586198331169351249_n {
+            get {
+                object obj = ResourceManager.GetObject("12295337_541123546039978_7586198331169351249_n", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _18010819_1215718668536747_4705220284574963347_n {
+            get {
+                object obj = ResourceManager.GetObject("18010819_1215718668536747_4705220284574963347_n", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap delete {
             get {
                 object obj = ResourceManager.GetObject("delete", resourceCulture);

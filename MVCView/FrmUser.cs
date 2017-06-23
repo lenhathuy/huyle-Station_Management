@@ -24,7 +24,6 @@ namespace MVCView
 
         private void FrmUser_Load(object sender, EventArgs e)
         {
-
             try
             {
                 disable();
@@ -34,7 +33,6 @@ namespace MVCView
             }
             catch (Exception)
             {
-
                 
             }         
         }
@@ -51,6 +49,7 @@ namespace MVCView
             DataTable dt = new DataTable();
             da.Fill(dt);
             dgvList.DataSource = dt;
+
             BindingSource bs = new BindingSource();
             DataSet dset = new DataSet();
             da.Fill(dset);
@@ -140,8 +139,8 @@ namespace MVCView
                         EditUser();
                     }
                     else {
-                        clearText();
-                        enable();
+                        //clearText();
+                        //enable();
                         AddUser();
                         disable();
                     }
@@ -202,7 +201,7 @@ namespace MVCView
             uPassword.Value = txtPassword.Text;
             fName.Value = txtFirstName.Text;
             lName.Value = txtLastName.Text;
-            email.Value = txtId.Text;
+            email.Value = txtEmail.Text;
             createdDate.Value = DateTime.Now;
             roleId.Value = cbRole.SelectedValue;
 
@@ -225,10 +224,10 @@ namespace MVCView
                 txtUserName.Focus();
                 return false;
             }
-            if (txtId.Text == "")
+            if (txtEmail.Text == "")
             {
                 MessageBox.Show("Please enter email", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtId.Focus();
+                txtEmail.Focus();
                 return false;
             }
             if (txtFirstName.Text == "")
@@ -327,6 +326,16 @@ namespace MVCView
                 txtLastName.Text = row.Cells[3].Value.ToString();
                 txtEmail.Text = row.Cells[4].Value.ToString();
             }
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtUserName_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
