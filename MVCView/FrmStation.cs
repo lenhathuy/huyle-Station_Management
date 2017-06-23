@@ -1,8 +1,6 @@
-﻿using MVCView.Common;
-using MVCView.ViewModel;
+﻿using MVCView.ViewModel;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -127,8 +125,10 @@ namespace MVCView
 
             _totalRecords = sourceData.Count;
             navigator.BindingSource = bsStation;
-            bsStation.CurrentChanged += new EventHandler(stationCurrentChanged);
-            bsStation.DataSource = new PageOffsetList(pageSize, _totalRecords);
+            bsStation.DataSource = dataTable;
+            grvStation.DataSource = bsStation;
+            //bsStation.CurrentChanged += new EventHandler(stationCurrentChanged);
+            //bsStation.DataSource = new PageOffsetList(pageSize, _totalRecords);
         }
     }
 }

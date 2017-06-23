@@ -1,14 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
-
-using System.Collections;
-using  WinFormMVC.Model;
-using  WinFormMVC.View;
-using  WinFormMVC.Controller;
 using MVCView;
-
 
 namespace UseMVCApplication
 {
@@ -20,7 +12,7 @@ namespace UseMVCApplication
         [STAThread]
         static void Main()
         {
-            Application.Run(new FrmStation());
+            Application.Run(new FrmStationConfig());
             /*UsersView view = new UsersView();
             view.Visible = false;
 

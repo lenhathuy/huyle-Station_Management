@@ -10,6 +10,8 @@ using System.Configuration;
 using System.Collections.Specialized;
 using GMap.NET.WindowsForms.ToolTips;
 using GMap.NET.ObjectModel;
+using System.Drawing;
+using System.Linq;
 
 namespace MVCView
 {

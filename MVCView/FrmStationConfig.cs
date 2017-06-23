@@ -6,6 +6,8 @@ using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 
 namespace MVCView
@@ -33,7 +35,7 @@ namespace MVCView
         /// <summary>
         /// Source data
         /// </summary>
-        private List<StationViewModel> sourceData = new List<StationViewModel>();
+        private List<StationValueViewModel> sourceData = new List<StationValueViewModel>();
 
         /// <summary>
         /// Total records
@@ -47,7 +49,7 @@ namespace MVCView
         /// <param name="e"></param>
         private void FrmStationConfig_Load(object sender, EventArgs e)
         {
-            GetStation(string.Empty);
+            GetStationValue(string.Empty);
         }
 
         private void stationCurrentChanged(object sender, EventArgs e)
@@ -55,7 +57,7 @@ namespace MVCView
             // The desired page has changed, so fetch the page of records using the "Current" offset   
             int offset = (int)bsStation.Current;
 
-            var records = new List<StationViewModel>();
+            var records = new List<StationValueViewModel>();
             for (int i = offset; i < offset + pageSize && i < _totalRecords; i++)
             {
                 records.Add(sourceData[i]);
@@ -79,15 +81,15 @@ namespace MVCView
                 return;
             }
 
-            GetStation(txtFind.Text);
+            GetStationValue(txtFind.Text);
         }
 
-        private void GetStation(string searchText)
+        private void GetStationValue(string searchText)
         {
             sourceData.Clear();
             DataTable dataTable = new DataTable();
             SqlConnection con = new SqlConnection(connectionString);
-            SqlCommand com = new SqlCommand("spGetStation", con);
+            SqlCommand com = new SqlCommand("spGetStationValue", con);
             com.CommandType = CommandType.StoredProcedure;
             com.Parameters.Add("@SearchText", SqlDbType.VarChar, 500).Value = searchText;
             SqlDataAdapter dataAdapter = new SqlDataAdapter(com);
@@ -111,24 +113,159 @@ namespace MVCView
                 //totalRecords = dtSource.Rows.Count;  
                 foreach (DataRow item in dataTable.Rows)
                 {
-                    var station = new StationViewModel
+                    var station = new StationValueViewModel
                     {
                         Group = item["Group"].ToString(),
                         StationCode = item["StationCode"].ToString(),
                         StationName = item["StationName"].ToString(),
-                        StationLocation = item["StationLocation"].ToString(),
-                        StationLatitude = float.Parse(item["StationLatitude"].ToString()),
-                        StationLongtitude = float.Parse(item["StationLongtitude"].ToString())
+                        Channel = int.Parse(item["Channel"].ToString()),
+                        Type = int.Parse(item["Type"].ToString()),
+                        Value = int.Parse(item["Value"].ToString())
                     };
 
                     sourceData.Add(station);
                 }
             }
 
+            var dt = new DataTable();
+            dt.Columns.Add("Group");
+            dt.Columns.Add("StationCode");
+            dt.Columns.Add("StationName");
+            dt.Columns.Add("Channel1");
+            dt.Columns.Add("Channel2");
+            dt.Columns.Add("Channel3");
+            dt.Columns.Add("Channel4");
+            dt.Columns.Add("Channel5");
+            dt.Columns.Add("Channel6");
+            dt.Columns.Add("Channel7");
+            dt.Columns.Add("Channel8");
+
+            var data = sourceData.GroupBy(x => new { x.Group, x.StationCode, x.StationName }).Select(x => new
+            {
+                Group = x.Key.Group,
+                StationCode = x.Key.StationCode,
+                StationName = x.Key.StationName,
+                Data = x.ToList()
+            });
+
+            foreach (var item in data)
+            {
+                var row = dt.NewRow();
+                row["Group"] = item.Group;
+                row["StationCode"] = item.StationCode;
+                row["StationName"] = item.StationName;
+                foreach (var d in item.Data)
+                {
+                    switch (d.Channel)
+                    {
+                        case 1:
+                            var value1 = row["Channel1"].ToString();
+                            if (string.IsNullOrEmpty(value1))
+                            {
+                                value1 += d.Value;
+                            }
+                            else
+                            {
+                                value1 += "/" + d.Value;
+                            }
+                            row["Channel1"] = value1;                            
+                            break;
+                        case 2:
+                            var value2 = row["Channel2"].ToString();
+                            if (string.IsNullOrEmpty(value2))
+                            {
+                                value2 += d.Value;
+                            }
+                            else
+                            {
+                                value2 += "/" + d.Value;
+                            }
+                            row["Channel2"] = value2;
+                            break;
+                        case 3:
+                            var value3 = row["Channel3"].ToString();
+                            if (string.IsNullOrEmpty(value3))
+                            {
+                                value3 += d.Value;
+                            }
+                            else
+                            {
+                                value3 += "/" + d.Value;
+                            }
+                            row["Channel3"] = value3;
+                            break;
+                        case 4:
+                            var value4 = row["Channel4"].ToString();
+                            if (string.IsNullOrEmpty(value4))
+                            {
+                                value4 += d.Value;
+                            }
+                            else
+                            {
+                                value4 += "/" + d.Value;
+                            }
+                            row["Channel4"] = value4;
+                            break;
+                        case 5:
+                            var value5 = row["Channel5"].ToString();
+                            if (string.IsNullOrEmpty(value5))
+                            {
+                                value5 += d.Value;
+                            }
+                            else
+                            {
+                                value5 += "/" + d.Value;
+                            }
+                            row["Channel5"] = value5;
+                            break;
+                        case 6:
+                            var value6 = row["Channel6"].ToString();
+                            if (string.IsNullOrEmpty(value6))
+                            {
+                                value6 += d.Value;
+                            }
+                            else
+                            {
+                                value6 += "/" + d.Value;
+                            }
+                            row["Channel6"] = value6;
+                            break;
+                        case 7:
+                            var value7 = row["Channel7"].ToString();
+                            if (string.IsNullOrEmpty(value7))
+                            {
+                                value7 += d.Value;
+                            }
+                            else
+                            {
+                                value7 += "/" + d.Value;
+                            }
+                            row["Channel7"] = value7;
+                            break;
+                        case 8:
+                            var value8 = row["Channel8"].ToString();
+                            if (string.IsNullOrEmpty(value8))
+                            {
+                                value8 += d.Value;
+                            }
+                            else
+                            {
+                                value8 += "/" + d.Value;
+                            }
+                            row["Channel8"] = value8;
+                            break;
+                    }
+                }
+
+                dt.Rows.Add(row);
+            }
+
             _totalRecords = sourceData.Count;
             navigator.BindingSource = bsStation;
-            bsStation.CurrentChanged += new EventHandler(stationCurrentChanged);
-            bsStation.DataSource = new PageOffsetList(pageSize, _totalRecords);
+            bsStation.DataSource = dt;
+            grvStation.DataSource = bsStation;
+            //bsStation.CurrentChanged += new EventHandler(stationCurrentChanged);
+            //bsStation.DataSource = new PageOffsetList(pageSize, _totalRecords);
         }
     }
 }

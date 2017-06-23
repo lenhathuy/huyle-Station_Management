@@ -1,6 +1,9 @@
 ﻿namespace MVCView.ViewModel
 {
-    public class StationViewModel
+    /// <summary>
+    /// Base Station View Model
+    /// </summary>
+    public class BaseStationViewModel
     {
         /// <summary>
         /// Group
@@ -16,7 +19,13 @@
         /// Station name
         /// </summary>
         public string StationName { get; set; }
+    }
 
+    /// <summary>
+    /// Station View Model
+    /// </summary>
+    public class StationViewModel : BaseStationViewModel
+    {
         /// <summary>
         /// Station location
         /// </summary>
@@ -42,5 +51,26 @@
                 return string.Concat(StationLatitude, ",", StationLongtitude);
             }
         }
+    }
+
+    /// <summary>
+    /// Station value view model
+    /// </summary>
+    public class StationValueViewModel: BaseStationViewModel
+    {
+        /// <summary>
+        /// The channel
+        /// </summary>
+        public int Channel { get; set; }
+
+        /// <summary>
+        /// The value
+        /// </summary>
+        public int Value { get; set; }
+
+        /// <summary>
+        /// The yype
+        /// </summary>
+        public int Type { get; set; }
     }
 }
