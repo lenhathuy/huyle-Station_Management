@@ -42,23 +42,43 @@
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FrmAddEditStation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAddEditStation.Designer.cs">
+      <DependentUpon>FrmAddEditStation.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmAlert.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FrmAlert.Designer.cs">
       <DependentUpon>FrmAlert.cs</DependentUpon>
     </Compile>
+    <Compile Include="Common\PageOffsetList.cs" />
     <Compile Include="FrmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FrmLogin.Designer.cs">
       <DependentUpon>FrmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmStationConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmStationConfig.Designer.cs">
+      <DependentUpon>FrmStationConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmStation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmStation.Designer.cs">
+      <DependentUpon>FrmStation.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmUser.cs">
       <SubType>Form</SubType>
@@ -112,13 +132,23 @@
     <Compile Include="UsersView.designer.cs">
       <DependentUpon>UsersView.cs</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\StationViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="FrmAddEditStation.resx">
+      <DependentUpon>FrmAddEditStation.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmAlert.resx">
       <DependentUpon>FrmAlert.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmStationConfig.resx">
+      <DependentUpon>FrmStationConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmStation.resx">
+      <DependentUpon>FrmStation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmUser.resx">
       <DependentUpon>FrmUser.cs</DependentUpon>
@@ -183,6 +213,7 @@
     <None Include="Resources\delete.png" />
     <Content Include="Resources\editIcon.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
