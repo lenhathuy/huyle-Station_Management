@@ -234,5 +234,15 @@ namespace MVCView.Metadta.Device
         {
             ID = Convert.ToInt32(dgvList.Rows[e.RowIndex].Cells[0].Value.ToString());
         }
+
+        private void lblDeviceCode_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -53,5 +53,21 @@ namespace MVCView
             frm.Dock = DockStyle.Fill;
             frm.Show();     
         }
+
+        private void menuTram_TableView_Click(object sender, EventArgs e)
+        {
+            FrmStation frm = new FrmStation();
+            frm.MdiParent = this;
+            frm.Dock = DockStyle.Fill;
+            frm.Show();
+        }
+
+        private void menuStationInfo_Click(object sender, EventArgs e)
+        {
+            FrmStationConfig frm = new FrmStationConfig();
+            frm.MdiParent = this;
+            frm.Dock = DockStyle.Fill;
+            frm.Show();     
+        }
     }
 }

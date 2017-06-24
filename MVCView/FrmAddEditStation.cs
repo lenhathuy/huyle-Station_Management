@@ -14,6 +14,7 @@ namespace MVCView
         /// Device data set
         /// </summary>
         public DataSet DeviceDataSet { get; private set; }
+        int stationId;
 
         /// <summary>
         /// Channel list
@@ -35,13 +36,14 @@ namespace MVCView
         /// </summary>
         private string connectionString = ConfigurationManager.ConnectionStrings["MyconnectionString"].ConnectionString;
 
-        public FrmAddEditStation()
+        public FrmAddEditStation(int stationId)
         {
+            this.stationId = stationId;
             InitializeComponent();
-            var station = GetStationById(5);
+            var station = GetStationById(stationId);
             lblStationText.Text = station.Name;
 
-            GetDevice(5);
+            GetDevice(stationId);
             //GetChannelDevice(1, 1);
 
             cbxChannel1Type1.DataSource = InitializeChannelData();
@@ -243,6 +245,12 @@ namespace MVCView
                     conn.Close();
             }
 
+            if (dataTable.Rows.Count > 0)
+            { 
+            
+            
+            }
+
             var row = dataTable.Rows[0];
             Station station = new Station();
             station.ID = Int32.Parse(row["ID"].ToString());
@@ -267,7 +275,7 @@ namespace MVCView
         {
             DataTable dataTable = new DataTable();
             SqlConnection conn = new SqlConnection(connectionString);
-            StringBuilder sql = new StringBuilder("select * from StationDevice s ");
+            StringBuilder sql = new StringBuilder("select d.ID, d.Name from StationDevice s ");
             sql.Append("inner join Device d on s.DeviceID = d.ID ");
             sql.Append("where s.StationID = @stationID");
             SqlCommand cmd = new SqlCommand(sql.ToString(), conn);
@@ -298,37 +306,50 @@ namespace MVCView
         /// <param name="e"></param>
         private void btnSave_Click(object sender, EventArgs e)
         {
-            InsertStationDeviceChannel(5, cbxChannel1Type1, cbxDevice1Type1, 1, 8);
-            InsertStationDeviceChannel(5, cbxChannel1Type2, cbxDevice1Type2, 1, 9);
-            InsertStationDeviceChannel(5, cbxChannel1Type3, cbxDevice1Type3, 1, 10);
+            DeleteStationDeviceChannel(stationId);
 
-            InsertStationDeviceChannel(5, cbxChannel2Type1, cbxDevice2Type1, 2, 8);
-            InsertStationDeviceChannel(5, cbxChannel2Type2, cbxDevice2Type2, 2, 9);
-            InsertStationDeviceChannel(5, cbxChannel2Type3, cbxDevice2Type3, 2, 10);
+            InsertStationDeviceChannel(stationId, cbxChannel1Type1, cbxDevice1Type1, 1, 8);
+            InsertStationDeviceChannel(stationId, cbxChannel1Type2, cbxDevice1Type2, 1, 9);
+            InsertStationDeviceChannel(stationId, cbxChannel1Type3, cbxDevice1Type3, 1, 10);
 
-            InsertStationDeviceChannel(5, cbxChannel3Type1, cbxDevice3Type1, 3, 8);
-            InsertStationDeviceChannel(5, cbxChannel3Type2, cbxDevice3Type2, 3, 9);
-            InsertStationDeviceChannel(5, cbxChannel3Type3, cbxDevice3Type3, 3, 10);
+            InsertStationDeviceChannel(stationId, cbxChannel2Type1, cbxDevice2Type1, 2, 8);
+            InsertStationDeviceChannel(stationId, cbxChannel2Type2, cbxDevice2Type2, 2, 9);
+            InsertStationDeviceChannel(stationId, cbxChannel2Type3, cbxDevice2Type3, 2, 10);
 
-            InsertStationDeviceChannel(5, cbxChannel4Type1, cbxDevice4Type1, 4, 8);
-            InsertStationDeviceChannel(5, cbxChannel4Type2, cbxDevice4Type2, 4, 9);
-            InsertStationDeviceChannel(5, cbxChannel4Type3, cbxDevice4Type3, 4, 10);
+            InsertStationDeviceChannel(stationId, cbxChannel3Type1, cbxDevice3Type1, 3, 8);
+            InsertStationDeviceChannel(stationId, cbxChannel3Type2, cbxDevice3Type2, 3, 9);
+            InsertStationDeviceChannel(stationId, cbxChannel3Type3, cbxDevice3Type3, 3, 10);
 
-            InsertStationDeviceChannel(5, cbxChannel5Type1, cbxDevice5Type1, 5, 8);
-            InsertStationDeviceChannel(5, cbxChannel5Type2, cbxDevice5Type2, 5, 9);
-            InsertStationDeviceChannel(5, cbxChannel5Type3, cbxDevice5Type3, 5, 10);
+            InsertStationDeviceChannel(stationId, cbxChannel4Type1, cbxDevice4Type1, 4, 8);
+            InsertStationDeviceChannel(stationId, cbxChannel4Type2, cbxDevice4Type2, 4, 9);
+            InsertStationDeviceChannel(stationId, cbxChannel4Type3, cbxDevice4Type3, 4, 10);
 
-            InsertStationDeviceChannel(5, cbxChannel6Type1, cbxDevice6Type1, 6, 8);
-            InsertStationDeviceChannel(5, cbxChannel6Type2, cbxDevice6Type2, 6, 9);
-            InsertStationDeviceChannel(5, cbxChannel6Type3, cbxDevice6Type3, 6, 10);
+            InsertStationDeviceChannel(stationId, cbxChannel5Type1, cbxDevice5Type1, 5, 8);
+            InsertStationDeviceChannel(stationId, cbxChannel5Type2, cbxDevice5Type2, 5, 9);
+            InsertStationDeviceChannel(stationId, cbxChannel5Type3, cbxDevice5Type3, 5, 10);
 
-            InsertStationDeviceChannel(5, cbxChannel7Type1, cbxDevice7Type1, 7, 8);
-            InsertStationDeviceChannel(5, cbxChannel7Type2, cbxDevice7Type2, 7, 9);
-            InsertStationDeviceChannel(5, cbxChannel7Type3, cbxDevice7Type3, 7, 10);
+            InsertStationDeviceChannel(stationId, cbxChannel6Type1, cbxDevice6Type1, 6, 8);
+            InsertStationDeviceChannel(stationId, cbxChannel6Type2, cbxDevice6Type2, 6, 9);
+            InsertStationDeviceChannel(stationId, cbxChannel6Type3, cbxDevice6Type3, 6, 10);
 
-            InsertStationDeviceChannel(5, cbxChannel8Type1, cbxDevice8Type1, 8, 8);
-            InsertStationDeviceChannel(5, cbxChannel8Type2, cbxDevice8Type2, 8, 9);
-            InsertStationDeviceChannel(5, cbxChannel8Type3, cbxDevice8Type3, 8, 10);
+            InsertStationDeviceChannel(stationId, cbxChannel7Type1, cbxDevice7Type1, 7, 8);
+            InsertStationDeviceChannel(stationId, cbxChannel7Type2, cbxDevice7Type2, 7, 9);
+            InsertStationDeviceChannel(stationId, cbxChannel7Type3, cbxDevice7Type3, 7, 10);
+
+            InsertStationDeviceChannel(stationId, cbxChannel8Type1, cbxDevice8Type1, 8, 8);
+            InsertStationDeviceChannel(stationId, cbxChannel8Type2, cbxDevice8Type2, 8, 9);
+            InsertStationDeviceChannel(stationId, cbxChannel8Type3, cbxDevice8Type3, 8, 10);
+        }
+
+        private void DeleteStationDeviceChannel(int stationId)
+        {
+            SqlConnection conn = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand("delete from StationDeviceChannel where StationID = @StationID", conn);
+            conn.Open();
+            cmd.Parameters.AddWithValue("@StationID", stationId);
+            cmd.ExecuteNonQuery();
+            if (conn.State == ConnectionState.Open)
+                conn.Close();
         }
 
         /// <summary>
@@ -337,18 +358,21 @@ namespace MVCView
         /// <param name="channelId"></param>
         /// <param name="deviceId"></param>
         /// <returns></returns>
-        private int GetChannelDevice(int channelId, int deviceId)
+        private int GetChannelDevice(int channelId, int deviceId, int type)
         {
             DataTable dataTable = new DataTable();
             SqlConnection conn = new SqlConnection(connectionString);
             StringBuilder sql = new StringBuilder("select top 1 * from [dbo].[ChannelDevice] ");
             sql.Append("where ChannelId = @channelId ");
             sql.Append("and DeviceId = @deviceId");
+            sql.Append(" and typeId = @typeId ");
             SqlCommand cmd = new SqlCommand(sql.ToString(), conn);
             SqlParameter channel = cmd.Parameters.Add("@channelId", SqlDbType.Int);
             channel.Value = channelId;
             SqlParameter device = cmd.Parameters.Add("@deviceId", SqlDbType.Int);
             device.Value = deviceId;
+            SqlParameter typeId = cmd.Parameters.Add("@typeId", SqlDbType.Int);
+            typeId.Value = type;
 
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             try
@@ -387,7 +411,7 @@ namespace MVCView
             SqlCommand cmd = new SqlCommand(sql.ToString(), conn);
 
             SqlParameter channelDeviceID = cmd.Parameters.Add("@ChannelDeviceID", SqlDbType.Int);
-            channelDeviceID.Value = GetChannelDevice(((ChannelModel)channel.SelectedItem).ID, (int)device.SelectedValue);
+            channelDeviceID.Value = GetChannelDevice(((ChannelModel)channel.SelectedItem).ID, (int)device.SelectedValue, type);
             SqlParameter stationID = cmd.Parameters.Add("@StationID", SqlDbType.Int);
             stationID.Value = stationId;
             SqlParameter status = cmd.Parameters.Add("@Status", SqlDbType.Bit);

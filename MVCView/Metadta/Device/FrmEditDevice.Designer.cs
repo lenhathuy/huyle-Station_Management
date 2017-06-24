@@ -67,16 +67,16 @@
             this.groupBox2.Controls.Add(this.btnAdd);
             this.groupBox2.Controls.Add(this.lv2);
             this.groupBox2.Controls.Add(this.lv1);
-            this.groupBox2.Location = new System.Drawing.Point(50, 239);
+            this.groupBox2.Location = new System.Drawing.Point(50, 218);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(637, 287);
+            this.groupBox2.Size = new System.Drawing.Size(637, 308);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Trạm";
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(232, 252);
+            this.btnCancel.Location = new System.Drawing.Point(232, 279);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 5;
@@ -85,7 +85,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(330, 252);
+            this.btnSave.Location = new System.Drawing.Point(323, 279);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 4;
@@ -112,7 +112,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAdd.Location = new System.Drawing.Point(278, 56);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(75, 26);
+            this.btnAdd.Size = new System.Drawing.Size(75, 47);
             this.btnAdd.TabIndex = 2;
             this.btnAdd.Text = ">>";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -123,9 +123,9 @@
             this.lv2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lv2.Location = new System.Drawing.Point(391, 19);
+            this.lv2.Location = new System.Drawing.Point(391, 36);
             this.lv2.Name = "lv2";
-            this.lv2.Size = new System.Drawing.Size(191, 221);
+            this.lv2.Size = new System.Drawing.Size(191, 225);
             this.lv2.TabIndex = 1;
             this.lv2.UseCompatibleStateImageBehavior = false;
             // 
@@ -133,9 +133,9 @@
             // 
             this.lv1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.lv1.Location = new System.Drawing.Point(46, 19);
+            this.lv1.Location = new System.Drawing.Point(46, 36);
             this.lv1.Name = "lv1";
-            this.lv1.Size = new System.Drawing.Size(194, 221);
+            this.lv1.Size = new System.Drawing.Size(194, 225);
             this.lv1.TabIndex = 0;
             this.lv1.UseCompatibleStateImageBehavior = false;
             // 
@@ -173,7 +173,7 @@
             this.grpDetails.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.grpDetails.Location = new System.Drawing.Point(50, 53);
             this.grpDetails.Name = "grpDetails";
-            this.grpDetails.Size = new System.Drawing.Size(637, 180);
+            this.grpDetails.Size = new System.Drawing.Size(637, 166);
             this.grpDetails.TabIndex = 40;
             this.grpDetails.TabStop = false;
             this.grpDetails.Text = "Thông tin chung";

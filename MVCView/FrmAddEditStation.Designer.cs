@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblStationText = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel12 = new System.Windows.Forms.Panel();
             this.btnCancel = new System.Windows.Forms.Button();
@@ -101,8 +103,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.lblStationText = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel12.SuspendLayout();
@@ -126,6 +126,25 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(584, 47);
             this.panel1.TabIndex = 0;
+            // 
+            // lblStationText
+            // 
+            this.lblStationText.AutoSize = true;
+            this.lblStationText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStationText.Location = new System.Drawing.Point(131, 13);
+            this.lblStationText.Name = "lblStationText";
+            this.lblStationText.Size = new System.Drawing.Size(0, 15);
+            this.lblStationText.TabIndex = 1;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(30, 13);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(39, 15);
+            this.label12.TabIndex = 0;
+            this.label12.Text = "Trạm:";
             // 
             // panel2
             // 
@@ -157,7 +176,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(471, 25);
+            this.btnCancel.Location = new System.Drawing.Point(216, 23);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 1;
@@ -166,7 +185,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(342, 25);
+            this.btnSave.Location = new System.Drawing.Point(297, 23);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 0;
@@ -782,50 +801,31 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(468, 9);
+            this.label4.Location = new System.Drawing.Point(439, 9);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(44, 15);
+            this.label4.Size = new System.Drawing.Size(79, 15);
             this.label4.TabIndex = 3;
-            this.label4.Text = "Battery";
+            this.label4.Text = "Battery (VDC)";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(275, 9);
+            this.label3.Location = new System.Drawing.Point(235, 9);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(66, 15);
+            this.label3.Size = new System.Drawing.Size(111, 15);
             this.label3.TabIndex = 2;
-            this.label3.Text = "Lưu Lượng";
+            this.label3.Text = "Lưu Lượng (m3 / h)";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(104, 9);
+            this.label2.Location = new System.Drawing.Point(85, 9);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(44, 15);
+            this.label2.Size = new System.Drawing.Size(73, 15);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Áp Lực";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(64, 13);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(36, 15);
-            this.label12.TabIndex = 0;
-            this.label12.Text = "Tram";
-            // 
-            // lblStationText
-            // 
-            this.lblStationText.AutoSize = true;
-            this.lblStationText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStationText.Location = new System.Drawing.Point(131, 13);
-            this.lblStationText.Name = "lblStationText";
-            this.lblStationText.Size = new System.Drawing.Size(0, 15);
-            this.lblStationText.TabIndex = 1;
+            this.label2.Text = "Áp Lực (bar)";
             // 
             // FrmAddEditStation
             // 
@@ -835,7 +835,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "FrmAddEditStation";
-            this.Text = "FrmAddEditStation";
+            this.Text = "Cấu hình kênh dữ liệu vật lý của trạm";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);

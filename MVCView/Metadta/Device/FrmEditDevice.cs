@@ -38,7 +38,11 @@ namespace MVCView.Metadta.Device
             txtId.Text = device.ID > 0 ? device.ID.ToString() : "";
             txtCode.Text = device.Code;
             txtSerial.Text = device.Serial;
-            dateTimePicker1.Value = device.ReceiptDate;
+            if (device.ID > 0 && device.ReceiptDate != null)
+                dateTimePicker1.Value = device.ReceiptDate;
+
+            if (device.ID > 0 &&  device.SetupDate != null)
+                dateTimePicker2.Value = device.SetupDate;
 
             loadStationInDevice();
             loadStationNotInDevice();
@@ -51,13 +55,14 @@ namespace MVCView.Metadta.Device
             {
                 lv2.Items.Clear();
                 StringBuilder mySql = new StringBuilder("select s.Name, s.ID from Station s ");
-                mySql.Append(" Where EXISTS ( Select 1 from StationDevice sd where s.ID = sd.StationID and sd.DeviceID = 1 ) ");
+                mySql.Append(" Where EXISTS ( Select 1 from StationDevice sd where s.ID = sd.StationID and sd.DeviceID = @DeviceId ) ");
 
-                SqlParameter deviceID = new SqlParameter("@DeviceID", SqlDbType.Int);
+                SqlParameter DeviceId = new SqlParameter("@DeviceId", SqlDbType.Int);
+                DeviceId.Value = device.ID;
 
-                //deviceID.Value = device.ID;
                 OpenConnection();
                 SqlCommand query = new SqlCommand(mySql.ToString(), con);
+                query.Parameters.Add(DeviceId);
 
                 SqlDataAdapter da = new SqlDataAdapter(query);
                 DataTable dt = new DataTable();
@@ -86,13 +91,17 @@ namespace MVCView.Metadta.Device
             {
                 lv1.Items.Clear();
                 StringBuilder mySql = new StringBuilder("select s.Name, s.ID from Station s  ");
-                mySql.Append(" Where NOT EXISTS( Select 1 from StationDevice sd where s.ID = sd.StationID  and sd.DeviceID = 1 ) ");
+                if (device.ID > 0) {
+                    mySql.Append(" Where NOT EXISTS( Select 1 from StationDevice sd where s.ID = sd.StationID AND sd.DeviceID = @DeviceId ) ");
+                }
                 OpenConnection();
-                //SqlParameter deviceID = new SqlParameter("@DeviceID", SqlDbType.Int);
-
-                //deviceID.Value = ID;
+                SqlParameter DeviceId = new SqlParameter("@DeviceId", SqlDbType.Int);
+                DeviceId.Value = device.ID;
                 
                 SqlCommand query = new SqlCommand(mySql.ToString());
+                if (device.ID > 0) {
+                    query.Parameters.Add(DeviceId);
+                }
                 query.Connection = con;
                 SqlDataAdapter da = new SqlDataAdapter(query);
                 DataTable dt = new DataTable();
@@ -211,13 +220,14 @@ namespace MVCView.Metadta.Device
 
         private void Add()
         {
-            SqlCommand myCommand = new SqlCommand(" INSERT Device (Name, Serial, Code, Status, SetupDate, ReceiptDate) Output Inserted.DeviceId VALUES (@Name, @Serial, @Code, @Status, @SetupDate, @ReceiptDate) ");
+            SqlCommand myCommand = new SqlCommand(" INSERT INTO Device (Name, Serial, Code, Status, CreatedDate, SetupDate, ReceiptDate) OUTPUT Inserted.ID VALUES (@Name, @Serial, @Code, @Status, @CreatedDate, @SetupDate, @ReceiptDate) ");
             myCommand.Connection = con;
 
             SqlParameter name = new SqlParameter("@Name", SqlDbType.VarChar);
             SqlParameter serial = new SqlParameter("@Serial", SqlDbType.VarChar);
             SqlParameter code = new SqlParameter("@Code", SqlDbType.VarChar);
             SqlParameter status = new SqlParameter("@Status", SqlDbType.Int);
+            SqlParameter createdDate = new SqlParameter("@CreatedDate", SqlDbType.DateTime);
             SqlParameter setupDate = new SqlParameter("@SetupDate", SqlDbType.DateTime);
             SqlParameter receiptDate = new SqlParameter("@ReceiptDate", SqlDbType.DateTime);
 
@@ -225,13 +235,16 @@ namespace MVCView.Metadta.Device
             serial.Value = txtSerial.Text;
             code.Value = txtCode.Text;
             status.Value = rdActive.Checked == true ? 1 : 0;
+            createdDate.Value = DateTime.Now;
             setupDate.Value = dateTimePicker2.Value;
             receiptDate.Value = dateTimePicker1.Value;
 
             myCommand.Parameters.Add(name);
             myCommand.Parameters.Add(serial);
             myCommand.Parameters.Add(status);
+             myCommand.Parameters.Add(code);
             myCommand.Parameters.Add(setupDate);
+            myCommand.Parameters.Add(createdDate);
             myCommand.Parameters.Add(receiptDate);
             ID = myCommand.ExecuteNonQuery();
         }
@@ -250,7 +263,7 @@ namespace MVCView.Metadta.Device
 
         private void addDevice2Station(int stationAddId)
         {
-            SqlCommand myCommand = new SqlCommand(" INSERT StationDevice (DeviceID, StationID, CreatedDate)  VALUES (@DeviceID, @StationID, @CreatedDate) ");
+            SqlCommand myCommand = new SqlCommand(" INSERT INTO StationDevice (DeviceID, StationID, CreatedDate)  VALUES (@DeviceID, @StationID, @CreatedDate) ");
             
             myCommand.Connection = con;
 

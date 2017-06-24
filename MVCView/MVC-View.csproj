@@ -62,6 +62,12 @@
       <DependentUpon>FrmAlert.cs</DependentUpon>
     </Compile>
     <Compile Include="Common\PageOffsetList.cs" />
+    <Compile Include="FrmDetailStation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmDetailStation.Designer.cs">
+      <DependentUpon>FrmDetailStation.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -143,6 +149,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmAlert.resx">
       <DependentUpon>FrmAlert.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmDetailStation.resx">
+      <DependentUpon>FrmDetailStation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>

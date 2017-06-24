@@ -114,11 +114,13 @@ namespace MVCView
                     var station = new StationViewModel
                     {
                         Group = item["Group"].ToString(),
+                        GroupID = int.Parse(item["GroupID"].ToString()),
                         StationCode = item["StationCode"].ToString(),
                         StationName = item["StationName"].ToString(),
                         StationLocation = item["StationLocation"].ToString(),
                         StationLatitude = float.Parse(item["StationLatitude"].ToString()),
-                        StationLongtitude = float.Parse(item["StationLongtitude"].ToString())
+                        StationLongtitude = float.Parse(item["StationLongtitude"].ToString()),
+                        StationID = int.Parse(item["StationID"].ToString())
                     };
 
                     sourceData.Add(station);
@@ -129,6 +131,28 @@ namespace MVCView
             navigator.BindingSource = bsStation;
             bsStation.DataSource = dataTable;
             grvStation.DataSource = bsStation;
+
+            grvStation.Columns[0].HeaderText = "Group";
+            grvStation.Columns[0].HeaderText = "Mã trạm";
+            grvStation.Columns[0].HeaderText = "Tên trạm";
+            grvStation.Columns[0].HeaderText = "Vị trí";
+            grvStation.Columns[0].HeaderText = "Lat";
+            grvStation.Columns[0].HeaderText = "Lng";
+            grvStation.Columns[0].HeaderText = "Áp lực";
+            grvStation.Columns[0].HeaderText = "Lưu lượng";
+            grvStation.Columns[0].HeaderText = "Battery";
+
+            DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
+            grvStation.Columns.Add(btn);
+            btn.Text = "Chỉnh sửa";
+            btn.DefaultCellStyle.ForeColor = System.Drawing.Color.Green;
+            btn.UseColumnTextForButtonValue = true;
+
+            DataGridViewButtonColumn btnDelete = new DataGridViewButtonColumn();
+            grvStation.Columns.Add(btnDelete);
+            btnDelete.Text = "Xóa";
+            btnDelete.DefaultCellStyle.ForeColor = System.Drawing.Color.Red;
+            btnDelete.UseColumnTextForButtonValue = true;
             //bsStation.CurrentChanged += new EventHandler(stationCurrentChanged);
             //bsStation.DataSource = new PageOffsetList(pageSize, _totalRecords);
         }
@@ -136,6 +160,58 @@ namespace MVCView
         private void bindingNavigatorAddNewItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void grvStation_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 0)
+            {
+                FrmDetailStation frm = new FrmDetailStation(sourceData[e.RowIndex]);
+                frm.Show();
+                this.Hide();
+            }
+            else if (e.ColumnIndex == 1)
+            {
+                if (MessageBox.Show("Delete record?", "Confirm", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    DeleteStationDevice(sourceData[e.RowIndex].StationID);
+                    DeleteStationChannelDevice(sourceData[e.RowIndex].StationID);
+                    DeleteStation(sourceData[e.RowIndex].StationID);
+                    MessageBox.Show("Record Deleted Successfully!");
+                }
+            }
+        }
+
+        private void DeleteStation(int stationId)
+        {
+            SqlConnection con = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand("delete Station where ID=@id", con);
+            con.Open();
+            cmd.Parameters.AddWithValue("@id", stationId);
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
+
+        private void DeleteStationChannelDevice(int stationId)
+        {
+            SqlConnection conn = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand("delete from StationDeviceChannel where StationID = @StationID", conn);
+            conn.Open();
+            cmd.Parameters.AddWithValue("@StationID", stationId);
+            cmd.ExecuteNonQuery();
+            if (conn.State == ConnectionState.Open)
+                conn.Close();
+        }
+
+        private void DeleteStationDevice(int stationId)
+        {
+            SqlConnection conn = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand("delete from StationDevice where StationID = @StationID", conn);
+            conn.Open();
+            cmd.Parameters.AddWithValue("@StationID", stationId);
+            cmd.ExecuteNonQuery();
+            if (conn.State == ConnectionState.Open)
+                conn.Close();
         }
     }
 }

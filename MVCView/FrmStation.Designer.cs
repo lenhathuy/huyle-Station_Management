@@ -136,6 +136,7 @@
             this.grvStation.Name = "grvStation";
             this.grvStation.Size = new System.Drawing.Size(684, 261);
             this.grvStation.TabIndex = 0;
+            this.grvStation.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grvStation_CellClick);
             // 
             // panel3
             // 

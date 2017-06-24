@@ -33,12 +33,10 @@
             this.menuMetadata = new System.Windows.Forms.ToolStripMenuItem();
             this.menuMetadata_User = new System.Windows.Forms.ToolStripMenuItem();
             this.menuMetadata_Device = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuMetadata_Data = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStationInfo = new System.Windows.Forms.ToolStripMenuItem();
             this.menu_Tram = new System.Windows.Forms.ToolStripMenuItem();
             this.menuTram_MapView = new System.Windows.Forms.ToolStripMenuItem();
             this.menuTram_TableView = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuTram_SystemView = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuTram_QuickView = new System.Windows.Forms.ToolStripMenuItem();
             this.menuSetting = new System.Windows.Forms.ToolStripMenuItem();
             this.menuSetting_Alert = new System.Windows.Forms.ToolStripMenuItem();
             this.menuHome.SuspendLayout();
@@ -68,7 +66,7 @@
             this.menuMetadata.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuMetadata_User,
             this.menuMetadata_Device,
-            this.menuMetadata_Data});
+            this.menuStationInfo});
             this.menuMetadata.Name = "menuMetadata";
             this.menuMetadata.Size = new System.Drawing.Size(122, 20);
             this.menuMetadata.Text = "Quản lý dữ liệu nền";
@@ -87,19 +85,18 @@
             this.menuMetadata_Device.Text = "Quản lý thiết bị";
             this.menuMetadata_Device.Click += new System.EventHandler(this.menuMetadata_Device_Click);
             // 
-            // menuMetadata_Data
+            // menuStationInfo
             // 
-            this.menuMetadata_Data.Name = "menuMetadata_Data";
-            this.menuMetadata_Data.Size = new System.Drawing.Size(180, 22);
-            this.menuMetadata_Data.Text = "Quản lý dữ liệu";
+            this.menuStationInfo.Name = "menuStationInfo";
+            this.menuStationInfo.Size = new System.Drawing.Size(180, 22);
+            this.menuStationInfo.Text = "Cấu hình trạm";
+            this.menuStationInfo.Click += new System.EventHandler(this.menuStationInfo_Click);
             // 
             // menu_Tram
             // 
             this.menu_Tram.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuTram_MapView,
-            this.menuTram_TableView,
-            this.menuTram_SystemView,
-            this.menuTram_QuickView});
+            this.menuTram_TableView});
             this.menu_Tram.Name = "menu_Tram";
             this.menu_Tram.Size = new System.Drawing.Size(88, 20);
             this.menu_Tram.Text = "Quản lý trạm";
@@ -116,18 +113,7 @@
             this.menuTram_TableView.Name = "menuTram_TableView";
             this.menuTram_TableView.Size = new System.Drawing.Size(203, 22);
             this.menuTram_TableView.Text = "Quản lý trạm dạng bảng";
-            // 
-            // menuTram_SystemView
-            // 
-            this.menuTram_SystemView.Name = "menuTram_SystemView";
-            this.menuTram_SystemView.Size = new System.Drawing.Size(203, 22);
-            this.menuTram_SystemView.Text = "System view";
-            // 
-            // menuTram_QuickView
-            // 
-            this.menuTram_QuickView.Name = "menuTram_QuickView";
-            this.menuTram_QuickView.Size = new System.Drawing.Size(203, 22);
-            this.menuTram_QuickView.Text = "Quick view";
+            this.menuTram_TableView.Click += new System.EventHandler(this.menuTram_TableView_Click);
             // 
             // menuSetting
             // 
@@ -140,7 +126,7 @@
             // menuSetting_Alert
             // 
             this.menuSetting_Alert.Name = "menuSetting_Alert";
-            this.menuSetting_Alert.Size = new System.Drawing.Size(152, 22);
+            this.menuSetting_Alert.Size = new System.Drawing.Size(125, 22);
             this.menuSetting_Alert.Text = "Báo động";
             this.menuSetting_Alert.Click += new System.EventHandler(this.menuSetting_Alert_Click);
             // 
@@ -168,12 +154,10 @@
         private System.Windows.Forms.ToolStripMenuItem menuMetadata;
         private System.Windows.Forms.ToolStripMenuItem menuMetadata_User;
         private System.Windows.Forms.ToolStripMenuItem menuMetadata_Device;
-        private System.Windows.Forms.ToolStripMenuItem menuMetadata_Data;
+        private System.Windows.Forms.ToolStripMenuItem menuStationInfo;
         private System.Windows.Forms.ToolStripMenuItem menu_Tram;
         private System.Windows.Forms.ToolStripMenuItem menuTram_MapView;
         private System.Windows.Forms.ToolStripMenuItem menuTram_TableView;
-        private System.Windows.Forms.ToolStripMenuItem menuTram_SystemView;
-        private System.Windows.Forms.ToolStripMenuItem menuTram_QuickView;
         private System.Windows.Forms.ToolStripMenuItem menuSetting;
         private System.Windows.Forms.ToolStripMenuItem menuSetting_Alert;
     }

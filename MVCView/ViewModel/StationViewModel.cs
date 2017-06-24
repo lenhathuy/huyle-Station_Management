@@ -19,6 +19,8 @@
         /// Station name
         /// </summary>
         public string StationName { get; set; }
+
+      
     }
 
     /// <summary>
@@ -26,6 +28,10 @@
     /// </summary>
     public class StationViewModel : BaseStationViewModel
     {
+
+        public int StationID { get; set; }
+
+        public int GroupID { get; set; }
         /// <summary>
         /// Station location
         /// </summary>
@@ -51,6 +57,8 @@
                 return string.Concat(StationLatitude, ",", StationLongtitude);
             }
         }
+
+      
     }
 
     /// <summary>
@@ -66,11 +74,13 @@
         /// <summary>
         /// The value
         /// </summary>
-        public int Value { get; set; }
+        public float Value { get; set; }
 
         /// <summary>
         /// The yype
         /// </summary>
         public int Type { get; set; }
+
+        public int StationID { get; set; }
     }
 }

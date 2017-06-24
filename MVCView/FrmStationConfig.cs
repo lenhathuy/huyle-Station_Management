@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -113,14 +114,26 @@ namespace MVCView
                 //totalRecords = dtSource.Rows.Count;  
                 foreach (DataRow item in dataTable.Rows)
                 {
+                    int channel = 0;
+                    int type = 0;
+                    float value = 0;
+                    if (!String.IsNullOrEmpty(item["Channel"].ToString()) && item["Channel"].ToString() != "0")
+                        channel  = int.Parse(item["Channel"].ToString());
+                    if (!String.IsNullOrEmpty(item["Type"].ToString()) && item["Type"].ToString() != "0")
+                        type = int.Parse(item["Type"].ToString());
+                    if (!String.IsNullOrEmpty(item["Value"].ToString()) && item["Value"].ToString() != "0")
+                        value = float.Parse(item["Value"].ToString());
+
+
                     var station = new StationValueViewModel
                     {
                         Group = item["Group"].ToString(),
                         StationCode = item["StationCode"].ToString(),
                         StationName = item["StationName"].ToString(),
-                        Channel = int.Parse(item["Channel"].ToString()),
-                        Type = int.Parse(item["Type"].ToString()),
-                        Value = int.Parse(item["Value"].ToString())
+                        StationID = int.Parse(item["StationID"].ToString()),
+                        Channel =  channel,
+                        Type = type,
+                        Value = value
                     };
 
                     sourceData.Add(station);
@@ -129,16 +142,23 @@ namespace MVCView
 
             var dt = new DataTable();
             dt.Columns.Add("Group");
-            dt.Columns.Add("StationCode");
-            dt.Columns.Add("StationName");
-            dt.Columns.Add("Channel1");
-            dt.Columns.Add("Channel2");
-            dt.Columns.Add("Channel3");
-            dt.Columns.Add("Channel4");
-            dt.Columns.Add("Channel5");
-            dt.Columns.Add("Channel6");
-            dt.Columns.Add("Channel7");
-            dt.Columns.Add("Channel8");
+            dt.Columns.Add("Mã trạm");
+            dt.Columns.Add("Tên trạm");
+            dt.Columns.Add("Kênh 1");
+            dt.Columns.Add("Kênh 2");
+            dt.Columns.Add("Kênh 3");
+            dt.Columns.Add("Kênh 4");
+            dt.Columns.Add("Kênh 5");
+            dt.Columns.Add("Kênh 6");
+            dt.Columns.Add("Kênh 7");
+            dt.Columns.Add("Kênh 8");
+
+            //DataGridViewImageColumn img = new DataGridViewImageColumn();
+            //Image image = Image.FromFile("Image Path");
+            //img.Image = image;
+            //grvStation.Columns.Add(img);
+            //img.HeaderText = "Image";
+            //img.Name = "img";         
 
             var data = sourceData.GroupBy(x => new { x.Group, x.StationCode, x.StationName }).Select(x => new
             {
@@ -152,14 +172,16 @@ namespace MVCView
             {
                 var row = dt.NewRow();
                 row["Group"] = item.Group;
-                row["StationCode"] = item.StationCode;
-                row["StationName"] = item.StationName;
+                row["Mã trạm"] = item.StationCode;
+                row["Tên trạm"] = item.StationName;
+       
+                
                 foreach (var d in item.Data)
                 {
                     switch (d.Channel)
                     {
                         case 1:
-                            var value1 = row["Channel1"].ToString();
+                            var value1 = row["Kênh 1"].ToString();
                             if (string.IsNullOrEmpty(value1))
                             {
                                 value1 += d.Value;
@@ -168,10 +190,10 @@ namespace MVCView
                             {
                                 value1 += "/" + d.Value;
                             }
-                            row["Channel1"] = value1;                            
+                            row["Kênh 1"] = value1;                            
                             break;
                         case 2:
-                            var value2 = row["Channel2"].ToString();
+                            var value2 = row["Kênh 2"].ToString();
                             if (string.IsNullOrEmpty(value2))
                             {
                                 value2 += d.Value;
@@ -180,10 +202,10 @@ namespace MVCView
                             {
                                 value2 += "/" + d.Value;
                             }
-                            row["Channel2"] = value2;
+                            row["Kênh 2"] = value2;
                             break;
                         case 3:
-                            var value3 = row["Channel3"].ToString();
+                            var value3 = row["Kênh 3"].ToString();
                             if (string.IsNullOrEmpty(value3))
                             {
                                 value3 += d.Value;
@@ -192,10 +214,10 @@ namespace MVCView
                             {
                                 value3 += "/" + d.Value;
                             }
-                            row["Channel3"] = value3;
+                            row["Kênh 3"] = value3;
                             break;
                         case 4:
-                            var value4 = row["Channel4"].ToString();
+                            var value4 = row["Kênh 4"].ToString();
                             if (string.IsNullOrEmpty(value4))
                             {
                                 value4 += d.Value;
@@ -204,10 +226,10 @@ namespace MVCView
                             {
                                 value4 += "/" + d.Value;
                             }
-                            row["Channel4"] = value4;
+                            row["Kênh 4"] = value4;
                             break;
                         case 5:
-                            var value5 = row["Channel5"].ToString();
+                            var value5 = row["Kênh 5"].ToString();
                             if (string.IsNullOrEmpty(value5))
                             {
                                 value5 += d.Value;
@@ -216,10 +238,10 @@ namespace MVCView
                             {
                                 value5 += "/" + d.Value;
                             }
-                            row["Channel5"] = value5;
+                            row["Kênh 5"] = value5;
                             break;
                         case 6:
-                            var value6 = row["Channel6"].ToString();
+                            var value6 = row["Kênh 6"].ToString();
                             if (string.IsNullOrEmpty(value6))
                             {
                                 value6 += d.Value;
@@ -228,10 +250,10 @@ namespace MVCView
                             {
                                 value6 += "/" + d.Value;
                             }
-                            row["Channel6"] = value6;
+                            row["Kênh 6"] = value6;
                             break;
                         case 7:
-                            var value7 = row["Channel7"].ToString();
+                            var value7 = row["Kênh 7"].ToString();
                             if (string.IsNullOrEmpty(value7))
                             {
                                 value7 += d.Value;
@@ -240,10 +262,10 @@ namespace MVCView
                             {
                                 value7 += "/" + d.Value;
                             }
-                            row["Channel7"] = value7;
+                            row["Kênh 7"] = value7;
                             break;
                         case 8:
-                            var value8 = row["Channel8"].ToString();
+                            var value8 = row["Kênh 8"].ToString();
                             if (string.IsNullOrEmpty(value8))
                             {
                                 value8 += d.Value;
@@ -252,7 +274,7 @@ namespace MVCView
                             {
                                 value8 += "/" + d.Value;
                             }
-                            row["Channel8"] = value8;
+                            row["Kênh 8"] = value8;
                             break;
                     }
                 }
@@ -260,12 +282,32 @@ namespace MVCView
                 dt.Rows.Add(row);
             }
 
+       
+
             _totalRecords = sourceData.Count;
             navigator.BindingSource = bsStation;
             bsStation.DataSource = dt;
             grvStation.DataSource = bsStation;
+
+            DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
+            grvStation.Columns.Add(btn);
+            btn.HeaderText = "Thao tác";
+            btn.Text = "Cấu hình";
+            btn.Name = "btn";
+            btn.UseColumnTextForButtonValue = true;
+            btn.DefaultCellStyle.ForeColor = System.Drawing.Color.Green;
             //bsStation.CurrentChanged += new EventHandler(stationCurrentChanged);
             //bsStation.DataSource = new PageOffsetList(pageSize, _totalRecords);
+        }
+
+        private void grvStation_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 0)
+            {
+                FrmAddEditStation frm = new FrmAddEditStation(sourceData[e.RowIndex].StationID);
+                frm.Show();
+                this.Hide();
+            }
         }
     }
 }

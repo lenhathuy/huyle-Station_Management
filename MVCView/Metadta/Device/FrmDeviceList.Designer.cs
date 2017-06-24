@@ -64,13 +64,13 @@
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
-            this.lblTitle.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.lblTitle.Location = new System.Drawing.Point(12, 20);
+            this.lblTitle.Location = new System.Drawing.Point(12, 10);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(171, 25);
+            this.lblTitle.Size = new System.Drawing.Size(156, 19);
             this.lblTitle.TabIndex = 0;
-            this.lblTitle.Text = "Quản lý thiết bị";
+            this.lblTitle.Text = "Danh sách thiết bị";
             // 
             // dgvList
             // 
@@ -80,10 +80,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvList.Location = new System.Drawing.Point(12, 240);
+            this.dgvList.Location = new System.Drawing.Point(16, 165);
             this.dgvList.Name = "dgvList";
             this.dgvList.ReadOnly = true;
-            this.dgvList.Size = new System.Drawing.Size(786, 263);
+            this.dgvList.Size = new System.Drawing.Size(766, 348);
             this.dgvList.TabIndex = 1;
             this.dgvList.AllowUserToDeleteRowsChanged += new System.EventHandler(this.dgvList_AllowUserToDeleteRowsChanged);
             this.dgvList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvList_CellContentClick);
@@ -100,10 +100,10 @@
             this.gbSearch.Controls.Add(this.lblDeviceCode);
             this.gbSearch.Controls.Add(this.textBox1);
             this.gbSearch.Controls.Add(this.lblDeviceName);
-            this.gbSearch.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbSearch.Location = new System.Drawing.Point(12, 58);
+            this.gbSearch.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbSearch.Location = new System.Drawing.Point(16, 36);
             this.gbSearch.Name = "gbSearch";
-            this.gbSearch.Size = new System.Drawing.Size(786, 133);
+            this.gbSearch.Size = new System.Drawing.Size(766, 98);
             this.gbSearch.TabIndex = 2;
             this.gbSearch.TabStop = false;
             this.gbSearch.Text = "Tìm kiếm";
@@ -111,9 +111,9 @@
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(323, 90);
+            this.btnSearch.Location = new System.Drawing.Point(308, 61);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(90, 37);
+            this.btnSearch.Size = new System.Drawing.Size(82, 25);
             this.btnSearch.TabIndex = 3;
             this.btnSearch.TabStop = false;
             this.btnSearch.Text = "Tìm kiếm";
@@ -123,49 +123,54 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(121, 70);
+            this.comboBox1.Location = new System.Drawing.Point(499, 24);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(186, 24);
+            this.comboBox1.Size = new System.Drawing.Size(142, 21);
             this.comboBox1.TabIndex = 2;
             // 
             // lblStatus
             // 
             this.lblStatus.AutoSize = true;
-            this.lblStatus.Location = new System.Drawing.Point(37, 73);
+            this.lblStatus.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStatus.Location = new System.Drawing.Point(427, 28);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(76, 16);
+            this.lblStatus.Size = new System.Drawing.Size(71, 14);
             this.lblStatus.TabIndex = 0;
             this.lblStatus.Text = "Trạng thái :";
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(449, 20);
+            this.textBox2.Location = new System.Drawing.Point(292, 23);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(178, 23);
+            this.textBox2.Size = new System.Drawing.Size(119, 21);
             this.textBox2.TabIndex = 1;
+            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // lblDeviceCode
             // 
             this.lblDeviceCode.AutoSize = true;
-            this.lblDeviceCode.Location = new System.Drawing.Point(381, 25);
+            this.lblDeviceCode.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDeviceCode.Location = new System.Drawing.Point(232, 28);
             this.lblDeviceCode.Name = "lblDeviceCode";
-            this.lblDeviceCode.Size = new System.Drawing.Size(66, 16);
+            this.lblDeviceCode.Size = new System.Drawing.Size(61, 14);
             this.lblDeviceCode.TabIndex = 0;
             this.lblDeviceCode.Text = "Mã hiệu : ";
+            this.lblDeviceCode.Click += new System.EventHandler(this.lblDeviceCode_Click);
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(121, 20);
+            this.textBox1.Location = new System.Drawing.Point(97, 23);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(186, 23);
+            this.textBox1.Size = new System.Drawing.Size(118, 21);
             this.textBox1.TabIndex = 1;
             // 
             // lblDeviceName
             // 
             this.lblDeviceName.AutoSize = true;
-            this.lblDeviceName.Location = new System.Drawing.Point(37, 23);
+            this.lblDeviceName.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDeviceName.Location = new System.Drawing.Point(13, 26);
             this.lblDeviceName.Name = "lblDeviceName";
-            this.lblDeviceName.Size = new System.Drawing.Size(82, 16);
+            this.lblDeviceName.Size = new System.Drawing.Size(80, 14);
             this.lblDeviceName.TabIndex = 0;
             this.lblDeviceName.Text = "Tên thiết bị :";
             // 
@@ -188,7 +193,7 @@
             this.addIcon,
             this.editIcon,
             this.delIcon});
-            this.bindingNavigator1.Location = new System.Drawing.Point(12, 212);
+            this.bindingNavigator1.Location = new System.Drawing.Point(16, 137);
             this.bindingNavigator1.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
             this.bindingNavigator1.MoveLastItem = this.bindingNavigatorMoveLastItem;
             this.bindingNavigator1.MoveNextItem = this.bindingNavigatorMoveNextItem;
@@ -307,7 +312,7 @@
             this.Controls.Add(this.dgvList);
             this.Controls.Add(this.lblTitle);
             this.Name = "FrmDeviceList";
-            this.Text = "FrmDeviceList";
+            this.Text = "Quản lý thiết bị";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmDeviceList_FormClosed);
             this.Load += new System.EventHandler(this.FrmDeviceList_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvList)).EndInit();

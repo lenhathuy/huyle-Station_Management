@@ -78,14 +78,14 @@
             this.panel4.Controls.Add(this.txtFind);
             this.panel4.Controls.Add(this.label1);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel4.Location = new System.Drawing.Point(0, 66);
+            this.panel4.Location = new System.Drawing.Point(0, 47);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(684, 34);
+            this.panel4.Size = new System.Drawing.Size(684, 53);
             this.panel4.TabIndex = 1;
             // 
             // btnFind
             // 
-            this.btnFind.Location = new System.Drawing.Point(386, 5);
+            this.btnFind.Location = new System.Drawing.Point(386, 11);
             this.btnFind.Name = "btnFind";
             this.btnFind.Size = new System.Drawing.Size(75, 23);
             this.btnFind.TabIndex = 2;
@@ -95,7 +95,7 @@
             // 
             // txtFind
             // 
-            this.txtFind.Location = new System.Drawing.Point(70, 6);
+            this.txtFind.Location = new System.Drawing.Point(70, 12);
             this.txtFind.Name = "txtFind";
             this.txtFind.Size = new System.Drawing.Size(300, 20);
             this.txtFind.TabIndex = 1;
@@ -103,7 +103,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Location = new System.Drawing.Point(12, 15);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(52, 13);
             this.label1.TabIndex = 0;
@@ -113,11 +113,11 @@
             // 
             this.lblTile.AutoSize = true;
             this.lblTile.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Bold);
-            this.lblTile.Location = new System.Drawing.Point(26, 20);
+            this.lblTile.Location = new System.Drawing.Point(26, 12);
             this.lblTile.Name = "lblTile";
-            this.lblTile.Size = new System.Drawing.Size(189, 24);
+            this.lblTile.Size = new System.Drawing.Size(159, 24);
             this.lblTile.TabIndex = 0;
-            this.lblTile.Text = "DANH SÁCH TRẠM";
+            this.lblTile.Text = "Danh sách trạm";
             // 
             // panel2
             // 
@@ -136,6 +136,7 @@
             this.grvStation.Name = "grvStation";
             this.grvStation.Size = new System.Drawing.Size(684, 261);
             this.grvStation.TabIndex = 0;
+            this.grvStation.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grvStation_CellClick);
             // 
             // panel3
             // 
@@ -269,7 +270,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "FrmStationConfig";
-            this.Text = "FrmStationConfig";
+            this.Text = "Cấu hình trạm";
             this.Load += new System.EventHandler(this.FrmStationConfig_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

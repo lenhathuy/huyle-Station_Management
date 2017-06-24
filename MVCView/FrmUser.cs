@@ -194,7 +194,7 @@ namespace MVCView
 
         private void AddUser()
         {
-            SqlCommand myCommand = new SqlCommand(" INSERT Users (UserName, Password, FirstName, LastName, Email, CreatedDate, ROLEID)  VALUES (@UserName, @Password, @FirstName, @LastName, @Email, @CreatedDate, @ROLEID) ");
+            SqlCommand myCommand = new SqlCommand(" INSERT INTO Users (UserName, Password, FirstName, LastName, Email, CreatedDate, ROLEID)  VALUES (@UserName, @Password, @FirstName, @LastName, @Email, @CreatedDate, @ROLEID) ");
             myCommand.Connection = con;
 
             SqlParameter uName = new SqlParameter("@Username", SqlDbType.VarChar);
