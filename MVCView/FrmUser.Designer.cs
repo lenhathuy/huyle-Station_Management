@@ -63,10 +63,12 @@
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.editIcon = new System.Windows.Forms.ToolStripButton();
+            this.bsUser = new System.Windows.Forms.BindingSource(this.components);
             this.grpDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bsUser)).BeginInit();
             this.SuspendLayout();
             // 
             // grpDetails
@@ -93,7 +95,7 @@
             this.grpDetails.Location = new System.Drawing.Point(12, 6);
             this.grpDetails.Name = "grpDetails";
             this.grpDetails.Size = new System.Drawing.Size(592, 180);
-            this.grpDetails.TabIndex = 39;
+            this.grpDetails.TabIndex = 0;
             this.grpDetails.TabStop = false;
             this.grpDetails.Text = "Tạo tài khoản mới:";
             // 
@@ -102,7 +104,7 @@
             this.btnCancel.Location = new System.Drawing.Point(298, 151);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(72, 23);
-            this.btnCancel.TabIndex = 42;
+            this.btnCancel.TabIndex = 9;
             this.btnCancel.Text = "&Hủy";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
@@ -112,7 +114,7 @@
             this.txtId.Location = new System.Drawing.Point(93, 19);
             this.txtId.Name = "txtId";
             this.txtId.Size = new System.Drawing.Size(186, 20);
-            this.txtId.TabIndex = 44;
+            this.txtId.TabIndex = 0;
             // 
             // label2
             // 
@@ -129,7 +131,7 @@
             this.txtEmail.Location = new System.Drawing.Point(391, 117);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(186, 20);
-            this.txtEmail.TabIndex = 42;
+            this.txtEmail.TabIndex = 7;
             // 
             // label1
             // 
@@ -145,7 +147,7 @@
             this.btnUpdate.Location = new System.Drawing.Point(220, 151);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(72, 23);
-            this.btnUpdate.TabIndex = 36;
+            this.btnUpdate.TabIndex = 8;
             this.btnUpdate.Text = "&Lưu";
             this.btnUpdate.Click += new System.EventHandler(this.btnAdd_Click);
             // 
@@ -154,7 +156,7 @@
             this.txtLastName.Location = new System.Drawing.Point(391, 84);
             this.txtLastName.Name = "txtLastName";
             this.txtLastName.Size = new System.Drawing.Size(186, 20);
-            this.txtLastName.TabIndex = 39;
+            this.txtLastName.TabIndex = 6;
             // 
             // cbRole
             // 
@@ -162,7 +164,7 @@
             this.cbRole.Location = new System.Drawing.Point(391, 18);
             this.cbRole.Name = "cbRole";
             this.cbRole.Size = new System.Drawing.Size(186, 21);
-            this.cbRole.TabIndex = 34;
+            this.cbRole.TabIndex = 4;
             // 
             // lblRole
             // 
@@ -177,9 +179,8 @@
             // 
             this.txtPassword.Location = new System.Drawing.Point(93, 84);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(186, 20);
-            this.txtPassword.TabIndex = 35;
+            this.txtPassword.TabIndex = 2;
             // 
             // lblPassword
             // 
@@ -194,7 +195,7 @@
             this.txtUserName.Location = new System.Drawing.Point(93, 50);
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(186, 20);
-            this.txtUserName.TabIndex = 30;
+            this.txtUserName.TabIndex = 1;
             this.txtUserName.TextChanged += new System.EventHandler(this.txtUserName_TextChanged);
             // 
             // textUserName
@@ -218,9 +219,8 @@
             // 
             this.txtRePassword.Location = new System.Drawing.Point(93, 116);
             this.txtRePassword.Name = "txtRePassword";
-            this.txtRePassword.PasswordChar = '*';
             this.txtRePassword.Size = new System.Drawing.Size(186, 20);
-            this.txtRePassword.TabIndex = 37;
+            this.txtRePassword.TabIndex = 3;
             // 
             // lblRePassword
             // 
@@ -235,7 +235,7 @@
             this.txtFirstName.Location = new System.Drawing.Point(391, 51);
             this.txtFirstName.Name = "txtFirstName";
             this.txtFirstName.Size = new System.Drawing.Size(186, 20);
-            this.txtFirstName.TabIndex = 1;
+            this.txtFirstName.TabIndex = 5;
             // 
             // lblFirstName
             // 
@@ -248,6 +248,7 @@
             // dgvList
             // 
             this.dgvList.AllowUserToAddRows = false;
+            this.dgvList.AllowUserToDeleteRows = false;
             this.dgvList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -258,6 +259,7 @@
             this.dgvList.ReadOnly = true;
             this.dgvList.Size = new System.Drawing.Size(928, 266);
             this.dgvList.TabIndex = 40;
+            this.dgvList.TabStop = false;
             this.dgvList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvList_CellClick);
             this.dgvList.SelectionChanged += new System.EventHandler(this.dgvList_SelectionChanged);
             // 
@@ -397,7 +399,7 @@
             this.Controls.Add(this.dgvList);
             this.Controls.Add(this.grpDetails);
             this.Name = "FrmUser";
-            this.Text = "Quản lý người dùng";
+            this.Text = "s";
             this.Load += new System.EventHandler(this.FrmUser_Load);
             this.grpDetails.ResumeLayout(false);
             this.grpDetails.PerformLayout();
@@ -405,6 +407,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
             this.bindingNavigator1.ResumeLayout(false);
             this.bindingNavigator1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bsUser)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -445,5 +448,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtId;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.BindingSource bsUser;
     }
 }

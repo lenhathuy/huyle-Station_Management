@@ -20,7 +20,7 @@ namespace UseMVCApplication
         [STAThread]
         static void Main()
         {
-            Application.Run(new FrmLogin());
+            Application.Run(new Home());
             /*UsersView view = new UsersView();
             view.Visible = false;
 

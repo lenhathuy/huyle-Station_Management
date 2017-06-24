@@ -20,36 +20,43 @@ namespace MVCView
 
         //Connection String
         string cs = ConfigurationManager.ConnectionStrings["MyconnectionString"].ConnectionString;
-        private SqlConnection con;
-
+        SqlConnection con;
+        int ID = 0; 
         private void FrmUser_Load(object sender, EventArgs e)
-        {
-            try
-            {
+        {            
+                con = new SqlConnection(cs);
                 disable();
-                connectDB();
                 loadRole();
-                loadUser();
-            }
-            catch (Exception)
-            {
-                
-            }         
+                loadUser();             
         }
 
         private void loadUser()
         {
-            // Build the SQL string
             StringBuilder mySql = new StringBuilder(" SELECT u.UserID, u.UserName, u.FirstName, u.LastName, u.email, r.name, u.createdDate  ");
             mySql.Append(" FROM USERS u ");
             mySql.Append(" LEFT JOIN ROLE r ON r.ROLEID = u.ROLEID ");
-            SqlCommand query = new SqlCommand(mySql.ToString());
-            query.Connection = con;
+            SqlCommand query = new SqlCommand(mySql.ToString(), con);
             SqlDataAdapter da = new SqlDataAdapter(query);
             DataTable dt = new DataTable();
-            da.Fill(dt);
-            dgvList.DataSource = dt;
 
+            try
+            {
+                con.Open();
+                da.Fill(dt);
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally {
+                if (con.State == ConnectionState.Open)
+                    con.Close();
+            }
+
+            // Build the SQL string
+            dgvList.DataSource = dt;
             BindingSource bs = new BindingSource();
             DataSet dset = new DataSet();
             da.Fill(dset);
@@ -125,6 +132,7 @@ namespace MVCView
             txtEmail.Clear();
             txtId.Clear();
             txtRePassword.Clear();
+            ID = 0;
         }
       
 
@@ -304,11 +312,22 @@ namespace MVCView
 
         private void delIcon_Click(object sender, EventArgs e)
         {
-            //if (MessageBox.Show("Delete record?", "Confirm", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
-            //{
-            //    //bindingSource1.RemoveCurrent();
-            //    dgvList.Rows.Remove(dgvList.CurrentRow);
-            //}
+            if (MessageBox.Show("Delete record?", "Confirm", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
+            {
+                if (ID > 0)
+                {
+                    SqlCommand cmd = new SqlCommand("delete Users where ID=@id", con);
+                    con.Open();
+                    cmd.Parameters.AddWithValue("@id", ID);
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                    MessageBox.Show("Record Deleted Successfully!");  
+                }
+                else {
+                    MessageBox.Show("Please Select Record to Delete");
+                }
+            }
+          
         }
 
         private void dgvList_SelectionChanged(object sender, EventArgs e)
@@ -322,9 +341,10 @@ namespace MVCView
                 DataGridViewRow row = this.dgvList.Rows[e.RowIndex];
                 txtId.Text = row.Cells[0].Value.ToString();
                 txtUserName.Text = row.Cells[1].Value.ToString();
-                txtFirstName.Text = row.Cells[2].Value.ToString();
-                txtLastName.Text = row.Cells[3].Value.ToString();
-                txtEmail.Text = row.Cells[4].Value.ToString();
+                txtPassword.Text = row.Cells[2].Value.ToString();
+                txtFirstName.Text = row.Cells[3].Value.ToString();
+                txtLastName.Text = row.Cells[4].Value.ToString();
+                txtEmail.Text = row.Cells[5].Value.ToString();
             }
         }
 

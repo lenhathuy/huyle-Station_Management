@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
             this.btnRemove = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.lv2 = new System.Windows.Forms.ListView();
             this.lv1 = new System.Windows.Forms.ListView();
             this.lblInfo = new System.Windows.Forms.Label();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
             this.grpDetails = new System.Windows.Forms.GroupBox();
             this.rdInactive = new System.Windows.Forms.RadioButton();
             this.rdActive = new System.Windows.Forms.RadioButton();
@@ -45,11 +45,11 @@
             this.txtId = new System.Windows.Forms.TextBox();
             this.lblId = new System.Windows.Forms.Label();
             this.lblSetupDate = new System.Windows.Forms.Label();
-            this.txtRePassword = new System.Windows.Forms.TextBox();
+            this.txtSerial = new System.Windows.Forms.TextBox();
             this.lblSerial = new System.Windows.Forms.Label();
-            this.txtPassword = new System.Windows.Forms.TextBox();
+            this.txtCode = new System.Windows.Forms.TextBox();
             this.lblCode = new System.Windows.Forms.Label();
-            this.txtUserName = new System.Windows.Forms.TextBox();
+            this.txtName = new System.Windows.Forms.TextBox();
             this.lblName = new System.Windows.Forms.Label();
             this.lblReceipDate = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
@@ -58,38 +58,72 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.btnCancel);
+            this.groupBox2.Controls.Add(this.btnSave);
             this.groupBox2.Controls.Add(this.btnRemove);
             this.groupBox2.Controls.Add(this.btnAdd);
             this.groupBox2.Controls.Add(this.lv2);
             this.groupBox2.Controls.Add(this.lv1);
             this.groupBox2.Location = new System.Drawing.Point(50, 239);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(606, 246);
+            this.groupBox2.Size = new System.Drawing.Size(637, 287);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Trạm";
             // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(232, 252);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.TabIndex = 5;
+            this.btnCancel.Text = "Hủy";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(330, 252);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(75, 23);
+            this.btnSave.TabIndex = 4;
+            this.btnSave.Text = "Lưu";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
             // btnRemove
             // 
-            this.btnRemove.Location = new System.Drawing.Point(266, 112);
+            this.btnRemove.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRemove.Location = new System.Drawing.Point(278, 114);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(75, 23);
             this.btnRemove.TabIndex = 3;
             this.btnRemove.Text = "<<";
             this.btnRemove.UseVisualStyleBackColor = true;
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(265, 56);
+            this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAdd.Location = new System.Drawing.Point(278, 56);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(75, 23);
+            this.btnAdd.Size = new System.Drawing.Size(75, 26);
             this.btnAdd.TabIndex = 2;
             this.btnAdd.Text = ">>";
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // lv2
             // 
-            this.lv2.Location = new System.Drawing.Point(363, 19);
+            this.lv2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lv2.Location = new System.Drawing.Point(391, 19);
             this.lv2.Name = "lv2";
             this.lv2.Size = new System.Drawing.Size(191, 221);
             this.lv2.TabIndex = 1;
@@ -97,7 +131,9 @@
             // 
             // lv1
             // 
-            this.lv1.Location = new System.Drawing.Point(59, 19);
+            this.lv1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.lv1.Location = new System.Drawing.Point(46, 19);
             this.lv1.Name = "lv1";
             this.lv1.Size = new System.Drawing.Size(194, 221);
             this.lv1.TabIndex = 0;
@@ -114,26 +150,11 @@
             this.lblInfo.TabIndex = 2;
             this.lblInfo.Text = "Thông tin chi tiết trạm : ...";
             // 
-            // btnCancel
-            // 
-            this.btnCancel.Location = new System.Drawing.Point(187, 503);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 3;
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            // 
-            // btnSave
-            // 
-            this.btnSave.Location = new System.Drawing.Point(315, 503);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(75, 23);
-            this.btnSave.TabIndex = 4;
-            this.btnSave.Text = "Save";
-            this.btnSave.UseVisualStyleBackColor = true;
-            // 
             // grpDetails
             // 
+            this.grpDetails.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.grpDetails.Controls.Add(this.rdInactive);
             this.grpDetails.Controls.Add(this.rdActive);
             this.grpDetails.Controls.Add(this.dateTimePicker2);
@@ -142,17 +163,17 @@
             this.grpDetails.Controls.Add(this.txtId);
             this.grpDetails.Controls.Add(this.lblId);
             this.grpDetails.Controls.Add(this.lblSetupDate);
-            this.grpDetails.Controls.Add(this.txtRePassword);
+            this.grpDetails.Controls.Add(this.txtSerial);
             this.grpDetails.Controls.Add(this.lblSerial);
-            this.grpDetails.Controls.Add(this.txtPassword);
+            this.grpDetails.Controls.Add(this.txtCode);
             this.grpDetails.Controls.Add(this.lblCode);
-            this.grpDetails.Controls.Add(this.txtUserName);
+            this.grpDetails.Controls.Add(this.txtName);
             this.grpDetails.Controls.Add(this.lblName);
             this.grpDetails.Controls.Add(this.lblReceipDate);
             this.grpDetails.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.grpDetails.Location = new System.Drawing.Point(50, 53);
             this.grpDetails.Name = "grpDetails";
-            this.grpDetails.Size = new System.Drawing.Size(606, 180);
+            this.grpDetails.Size = new System.Drawing.Size(637, 180);
             this.grpDetails.TabIndex = 40;
             this.grpDetails.TabStop = false;
             this.grpDetails.Text = "Thông tin chung";
@@ -228,13 +249,12 @@
             this.lblSetupDate.TabIndex = 40;
             this.lblSetupDate.Text = "Ngày lắp đặt :";
             // 
-            // txtRePassword
+            // txtSerial
             // 
-            this.txtRePassword.Location = new System.Drawing.Point(386, 61);
-            this.txtRePassword.Name = "txtRePassword";
-            this.txtRePassword.PasswordChar = '*';
-            this.txtRePassword.Size = new System.Drawing.Size(196, 20);
-            this.txtRePassword.TabIndex = 37;
+            this.txtSerial.Location = new System.Drawing.Point(386, 61);
+            this.txtSerial.Name = "txtSerial";
+            this.txtSerial.Size = new System.Drawing.Size(196, 20);
+            this.txtSerial.TabIndex = 37;
             // 
             // lblSerial
             // 
@@ -244,13 +264,12 @@
             this.lblSerial.TabIndex = 38;
             this.lblSerial.Text = "Số Seri :";
             // 
-            // txtPassword
+            // txtCode
             // 
-            this.txtPassword.Location = new System.Drawing.Point(89, 61);
-            this.txtPassword.Name = "txtPassword";
-            this.txtPassword.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(186, 20);
-            this.txtPassword.TabIndex = 35;
+            this.txtCode.Location = new System.Drawing.Point(89, 61);
+            this.txtCode.Name = "txtCode";
+            this.txtCode.Size = new System.Drawing.Size(186, 20);
+            this.txtCode.TabIndex = 35;
             // 
             // lblCode
             // 
@@ -260,12 +279,12 @@
             this.lblCode.TabIndex = 36;
             this.lblCode.Text = "Mã hiệu :";
             // 
-            // txtUserName
+            // txtName
             // 
-            this.txtUserName.Location = new System.Drawing.Point(386, 19);
-            this.txtUserName.Name = "txtUserName";
-            this.txtUserName.Size = new System.Drawing.Size(196, 20);
-            this.txtUserName.TabIndex = 30;
+            this.txtName.Location = new System.Drawing.Point(386, 19);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(196, 20);
+            this.txtName.TabIndex = 30;
             // 
             // lblName
             // 
@@ -290,12 +309,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(699, 538);
             this.Controls.Add(this.grpDetails);
-            this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.lblInfo);
             this.Controls.Add(this.groupBox2);
             this.Name = "FrmEditDevice";
             this.Text = "FrmEditDevice";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmEditDevice_FormClosed);
+            this.Load += new System.EventHandler(this.FrmEditDevice_Load);
             this.groupBox2.ResumeLayout(false);
             this.grpDetails.ResumeLayout(false);
             this.grpDetails.PerformLayout();
@@ -308,8 +327,6 @@
 
         public System.Windows.Forms.GroupBox groupBox2;
         public System.Windows.Forms.Label lblInfo;
-        public System.Windows.Forms.Button btnCancel;
-        public System.Windows.Forms.Button btnSave;
         public System.Windows.Forms.GroupBox grpDetails;
         public System.Windows.Forms.DateTimePicker dateTimePicker2;
         public System.Windows.Forms.DateTimePicker dateTimePicker1;
@@ -317,11 +334,11 @@
         public System.Windows.Forms.TextBox txtId;
         public System.Windows.Forms.Label lblId;
         public System.Windows.Forms.Label lblSetupDate;
-        public System.Windows.Forms.TextBox txtRePassword;
+        public System.Windows.Forms.TextBox txtSerial;
         public System.Windows.Forms.Label lblSerial;
-        public System.Windows.Forms.TextBox txtPassword;
+        public System.Windows.Forms.TextBox txtCode;
         public System.Windows.Forms.Label lblCode;
-        public System.Windows.Forms.TextBox txtUserName;
+        public System.Windows.Forms.TextBox txtName;
         public System.Windows.Forms.Label lblName;
         public System.Windows.Forms.Label lblReceipDate;
         public System.Windows.Forms.Button btnRemove;
@@ -330,5 +347,7 @@
         public System.Windows.Forms.ListView lv1;
         public System.Windows.Forms.RadioButton rdInactive;
         public System.Windows.Forms.RadioButton rdActive;
+        private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Button btnSave;
     }
 }

@@ -92,6 +92,7 @@
     <Compile Include="Home.Designer.cs">
       <DependentUpon>Home.cs</DependentUpon>
     </Compile>
+    <Compile Include="Metadta\Device\DeviceMViewodel.cs" />
     <Compile Include="Metadta\Device\FrmDeviceList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -132,7 +133,9 @@
     <Compile Include="UsersView.designer.cs">
       <DependentUpon>UsersView.cs</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\DeviceViewModel.cs" />
     <Compile Include="ViewModel\StationViewModel.cs" />
+    <Compile Include="ViewModel\UserModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FrmAddEditStation.resx">

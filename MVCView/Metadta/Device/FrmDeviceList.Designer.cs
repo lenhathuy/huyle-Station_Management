@@ -53,10 +53,12 @@
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.editIcon = new System.Windows.Forms.ToolStripButton();
+            this.bsDevice = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgvList)).BeginInit();
             this.gbSearch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bsDevice)).BeginInit();
             this.SuspendLayout();
             // 
             // lblTitle
@@ -83,7 +85,9 @@
             this.dgvList.ReadOnly = true;
             this.dgvList.Size = new System.Drawing.Size(786, 263);
             this.dgvList.TabIndex = 1;
+            this.dgvList.AllowUserToDeleteRowsChanged += new System.EventHandler(this.dgvList_AllowUserToDeleteRowsChanged);
             this.dgvList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvList_CellContentClick);
+            this.dgvList.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvList_RowHeaderMouseClick);
             // 
             // gbSearch
             // 
@@ -221,6 +225,7 @@
             this.delIcon.RightToLeftAutoMirrorImage = true;
             this.delIcon.Size = new System.Drawing.Size(23, 22);
             this.delIcon.Text = "Delete";
+            this.delIcon.Click += new System.EventHandler(this.delIcon_Click);
             // 
             // bindingNavigatorMoveFirstItem
             // 
@@ -290,6 +295,7 @@
             this.editIcon.Name = "editIcon";
             this.editIcon.Size = new System.Drawing.Size(23, 22);
             this.editIcon.Text = "Edit";
+            this.editIcon.Click += new System.EventHandler(this.editIcon_Click);
             // 
             // FrmDeviceList
             // 
@@ -310,6 +316,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
             this.bindingNavigator1.ResumeLayout(false);
             this.bindingNavigator1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bsDevice)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -340,5 +347,6 @@
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveLastItem;
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
         private System.Windows.Forms.ToolStripButton editIcon;
+        private System.Windows.Forms.BindingSource bsDevice;
     }
 }

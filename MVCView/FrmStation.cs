@@ -24,6 +24,11 @@ namespace MVCView
         public const int pageSize = 10;
 
         /// <summary>
+        /// Total records
+        /// </summary>
+        private int _totalRecords;
+
+        /// <summary>
         /// The connection string
         /// </summary>
         private string connectionString = ConfigurationManager.ConnectionStrings["MyconnectionString"].ConnectionString;
@@ -33,10 +38,7 @@ namespace MVCView
         /// </summary>
         private List<StationViewModel> sourceData = new List<StationViewModel>();
 
-        /// <summary>
-        /// Total records
-        /// </summary>
-        private int _totalRecords;
+   
 
         /// <summary>
         /// Frame station load event
@@ -129,6 +131,11 @@ namespace MVCView
             grvStation.DataSource = bsStation;
             //bsStation.CurrentChanged += new EventHandler(stationCurrentChanged);
             //bsStation.DataSource = new PageOffsetList(pageSize, _totalRecords);
+        }
+
+        private void bindingNavigatorAddNewItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
