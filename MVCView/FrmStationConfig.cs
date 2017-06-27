@@ -38,6 +38,8 @@ namespace MVCView
         /// </summary>
         private List<StationValueViewModel> sourceData = new List<StationValueViewModel>();
 
+        List<int> listStationIds = new List<int>();
+
         /// <summary>
         /// Total records
         /// </summary>
@@ -160,11 +162,12 @@ namespace MVCView
             //img.HeaderText = "Image";
             //img.Name = "img";         
 
-            var data = sourceData.GroupBy(x => new { x.Group, x.StationCode, x.StationName }).Select(x => new
+            var data = sourceData.GroupBy(x => new { x.Group, x.StationCode, x.StationName, x.StationID }).Select(x => new
             {
                 Group = x.Key.Group,
                 StationCode = x.Key.StationCode,
                 StationName = x.Key.StationName,
+                StationID = x.Key.StationID,
                 Data = x.ToList()
             });
 
@@ -174,6 +177,7 @@ namespace MVCView
                 row["Group"] = item.Group;
                 row["Mã trạm"] = item.StationCode;
                 row["Tên trạm"] = item.StationName;
+                listStationIds.Add(item.StationID);
        
                 
                 foreach (var d in item.Data)
@@ -277,7 +281,7 @@ namespace MVCView
                             row["Kênh 8"] = value8;
                             break;
                     }
-                }
+                }              
 
                 dt.Rows.Add(row);
             }
@@ -288,7 +292,6 @@ namespace MVCView
             navigator.BindingSource = bsStation;
             bsStation.DataSource = dt;
             grvStation.DataSource = bsStation;
-
             DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
             grvStation.Columns.Add(btn);
             btn.HeaderText = "Thao tác";
@@ -296,6 +299,7 @@ namespace MVCView
             btn.Name = "btn";
             btn.UseColumnTextForButtonValue = true;
             btn.DefaultCellStyle.ForeColor = System.Drawing.Color.Green;
+         
             //bsStation.CurrentChanged += new EventHandler(stationCurrentChanged);
             //bsStation.DataSource = new PageOffsetList(pageSize, _totalRecords);
         }
@@ -304,7 +308,7 @@ namespace MVCView
         {
             if (e.ColumnIndex == 0)
             {
-                FrmAddEditStation frm = new FrmAddEditStation(sourceData[e.RowIndex].StationID);
+                FrmAddEditStation frm = new FrmAddEditStation(listStationIds[e.RowIndex]);
                 frm.Show();
                 this.Hide();
             }

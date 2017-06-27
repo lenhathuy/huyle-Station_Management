@@ -34,11 +34,11 @@
             this.dgvList = new System.Windows.Forms.DataGridView();
             this.gbSearch = new System.Windows.Forms.GroupBox();
             this.btnSearch = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbStatus = new System.Windows.Forms.ComboBox();
             this.lblStatus = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtCode = new System.Windows.Forms.TextBox();
             this.lblDeviceCode = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtName = new System.Windows.Forms.TextBox();
             this.lblDeviceName = new System.Windows.Forms.Label();
             this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
             this.addIcon = new System.Windows.Forms.ToolStripButton();
@@ -83,6 +83,7 @@
             this.dgvList.Location = new System.Drawing.Point(16, 165);
             this.dgvList.Name = "dgvList";
             this.dgvList.ReadOnly = true;
+            this.dgvList.RowHeadersWidth = 30;
             this.dgvList.Size = new System.Drawing.Size(766, 348);
             this.dgvList.TabIndex = 1;
             this.dgvList.AllowUserToDeleteRowsChanged += new System.EventHandler(this.dgvList_AllowUserToDeleteRowsChanged);
@@ -94,11 +95,11 @@
             this.gbSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gbSearch.Controls.Add(this.btnSearch);
-            this.gbSearch.Controls.Add(this.comboBox1);
+            this.gbSearch.Controls.Add(this.cbStatus);
             this.gbSearch.Controls.Add(this.lblStatus);
-            this.gbSearch.Controls.Add(this.textBox2);
+            this.gbSearch.Controls.Add(this.txtCode);
             this.gbSearch.Controls.Add(this.lblDeviceCode);
-            this.gbSearch.Controls.Add(this.textBox1);
+            this.gbSearch.Controls.Add(this.txtName);
             this.gbSearch.Controls.Add(this.lblDeviceName);
             this.gbSearch.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbSearch.Location = new System.Drawing.Point(16, 36);
@@ -120,49 +121,49 @@
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
-            // comboBox1
+            // cbStatus
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(499, 24);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(142, 21);
-            this.comboBox1.TabIndex = 2;
+            this.cbStatus.FormattingEnabled = true;
+            this.cbStatus.Location = new System.Drawing.Point(583, 24);
+            this.cbStatus.Name = "cbStatus";
+            this.cbStatus.Size = new System.Drawing.Size(161, 21);
+            this.cbStatus.TabIndex = 2;
             // 
             // lblStatus
             // 
             this.lblStatus.AutoSize = true;
             this.lblStatus.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStatus.Location = new System.Drawing.Point(427, 28);
+            this.lblStatus.Location = new System.Drawing.Point(489, 26);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(71, 14);
             this.lblStatus.TabIndex = 0;
             this.lblStatus.Text = "Trạng thái :";
             // 
-            // textBox2
+            // txtCode
             // 
-            this.textBox2.Location = new System.Drawing.Point(292, 23);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(119, 21);
-            this.textBox2.TabIndex = 1;
-            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            this.txtCode.Location = new System.Drawing.Point(321, 23);
+            this.txtCode.Name = "txtCode";
+            this.txtCode.Size = new System.Drawing.Size(150, 21);
+            this.txtCode.TabIndex = 1;
+            this.txtCode.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // lblDeviceCode
             // 
             this.lblDeviceCode.AutoSize = true;
             this.lblDeviceCode.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDeviceCode.Location = new System.Drawing.Point(232, 28);
+            this.lblDeviceCode.Location = new System.Drawing.Point(243, 26);
             this.lblDeviceCode.Name = "lblDeviceCode";
             this.lblDeviceCode.Size = new System.Drawing.Size(61, 14);
             this.lblDeviceCode.TabIndex = 0;
             this.lblDeviceCode.Text = "Mã hiệu : ";
             this.lblDeviceCode.Click += new System.EventHandler(this.lblDeviceCode_Click);
             // 
-            // textBox1
+            // txtName
             // 
-            this.textBox1.Location = new System.Drawing.Point(97, 23);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(118, 21);
-            this.textBox1.TabIndex = 1;
+            this.txtName.Location = new System.Drawing.Point(97, 23);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(129, 21);
+            this.txtName.TabIndex = 1;
             // 
             // lblDeviceName
             // 
@@ -332,11 +333,11 @@
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.DataGridView dgvList;
         private System.Windows.Forms.GroupBox gbSearch;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbStatus;
         private System.Windows.Forms.Label lblStatus;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtCode;
         private System.Windows.Forms.Label lblDeviceCode;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Label lblDeviceName;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.BindingNavigator bindingNavigator1;

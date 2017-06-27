@@ -32,6 +32,8 @@
         public int StationID { get; set; }
 
         public int GroupID { get; set; }
+
+        public string kvID { get; set; }
         /// <summary>
         /// Station location
         /// </summary>

@@ -36,6 +36,9 @@ namespace MVCView
         private void Home_Load(object sender, EventArgs e)
         {
             IsMdiContainer = true;
+            //this.TopMost = true;
+            //this.FormBorderStyle = FormBorderStyle.None;
+            //this.WindowState = FormWindowState.Maximized;
         }
 
         private void menuMetadata_User_Click(object sender, EventArgs e)

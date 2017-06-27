@@ -47,7 +47,7 @@ namespace MVCView
         /// <param name="e"></param>
         private void FrmStation_Load(object sender, EventArgs e)
         {
-            GetStation(string.Empty);
+            GetStation(string.Empty);        
         }
 
         private void stationCurrentChanged(object sender, EventArgs e)
@@ -66,10 +66,10 @@ namespace MVCView
 
         private void bindingNavigatorDeleteItem_Click(object sender, EventArgs e)
         {
-            if (!grvStation.CurrentRow.Selected)
-            {
-                grvStation.CancelEdit();
-            }
+            //if (!grvStation.CurrentRow.Selected)
+            //{
+            //    grvStation.CancelEdit();
+            //}
         }
 
         private void btnFind_Click(object sender, EventArgs e)
@@ -82,7 +82,7 @@ namespace MVCView
             GetStation(txtFind.Text);
         }
 
-        private void GetStation(string searchText)
+        public void GetStation(string searchText)
         {
             sourceData.Clear();
             DataTable dataTable = new DataTable();
@@ -120,7 +120,8 @@ namespace MVCView
                         StationLocation = item["StationLocation"].ToString(),
                         StationLatitude = float.Parse(item["StationLatitude"].ToString()),
                         StationLongtitude = float.Parse(item["StationLongtitude"].ToString()),
-                        StationID = int.Parse(item["StationID"].ToString())
+                        StationID = int.Parse(item["StationID"].ToString()),
+                        kvID = item["kvID"].ToString()
                     };
 
                     sourceData.Add(station);
@@ -132,15 +133,20 @@ namespace MVCView
             bsStation.DataSource = dataTable;
             grvStation.DataSource = bsStation;
 
-            grvStation.Columns[0].HeaderText = "Group";
-            grvStation.Columns[0].HeaderText = "Mã trạm";
-            grvStation.Columns[0].HeaderText = "Tên trạm";
-            grvStation.Columns[0].HeaderText = "Vị trí";
-            grvStation.Columns[0].HeaderText = "Lat";
-            grvStation.Columns[0].HeaderText = "Lng";
-            grvStation.Columns[0].HeaderText = "Áp lực";
-            grvStation.Columns[0].HeaderText = "Lưu lượng";
-            grvStation.Columns[0].HeaderText = "Battery";
+            grvStation.Columns[0].HeaderText = "ID";
+            grvStation.Columns[1].HeaderText = "Mã trạm";
+            grvStation.Columns[2].HeaderText = "Tên trạm";
+            grvStation.Columns[3].HeaderText = "Group";
+            grvStation.Columns[6].HeaderText = "Khu vực";
+            grvStation.Columns[7].HeaderText = "Vị trí";
+            grvStation.Columns[8].HeaderText = "Lat";
+            grvStation.Columns[9].HeaderText = "Lng";
+            grvStation.Columns[10].HeaderText = "Áp lực";
+            grvStation.Columns[11].HeaderText = "Lưu lượng";
+            grvStation.Columns[12].HeaderText = "Battery";
+
+            grvStation.Columns["GroupID"].Visible = false;
+            grvStation.Columns["kvID"].Visible = false;
 
             DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
             grvStation.Columns.Add(btn);
@@ -166,9 +172,8 @@ namespace MVCView
         {
             if (e.ColumnIndex == 0)
             {
-                FrmDetailStation frm = new FrmDetailStation(sourceData[e.RowIndex]);
+                FrmDetailStation frm = new FrmDetailStation(sourceData[e.RowIndex], this);
                 frm.Show();
-                this.Hide();
             }
             else if (e.ColumnIndex == 1)
             {
@@ -212,6 +217,12 @@ namespace MVCView
             cmd.ExecuteNonQuery();
             if (conn.State == ConnectionState.Open)
                 conn.Close();
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            FrmDetailStation frm = new FrmDetailStation(new StationViewModel(), this);
+            frm.Show();
         }
     }
 }

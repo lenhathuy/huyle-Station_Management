@@ -15,12 +15,14 @@ namespace MVCView.ViewModel
 
         public string Serial { get; set; }
 
-        public Boolean Status { get; set; }
 
         public DateTime ReceiptDate { get; set; }
 
         public DateTime SetupDate { get; set; }
 
         public DateTime CreatedDate { get; set; }
+
+        public string Status { get; set; }
+
     }
 }

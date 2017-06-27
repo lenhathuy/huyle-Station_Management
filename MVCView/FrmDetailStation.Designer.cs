@@ -29,6 +29,13 @@
         private void InitializeComponent()
         {
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.rdInactive = new System.Windows.Forms.RadioButton();
+            this.rdActive = new System.Windows.Forms.RadioButton();
+            this.lblStatus = new System.Windows.Forms.Label();
+            this.txtDescription = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.cbKhuVuc = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.listView1 = new System.Windows.Forms.ListView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -47,17 +54,9 @@
             this.lblDeviceName = new System.Windows.Forms.Label();
             this.cbGroup = new System.Windows.Forms.ComboBox();
             this.lblRole = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btnUpdload = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.txtDescription = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.cbKhuVuc = new System.Windows.Forms.ComboBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.rdInactive = new System.Windows.Forms.RadioButton();
-            this.rdActive = new System.Windows.Forms.RadioButton();
-            this.lblStatus = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -93,6 +92,73 @@
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Thông tin chung";
+            // 
+            // rdInactive
+            // 
+            this.rdInactive.AutoSize = true;
+            this.rdInactive.Location = new System.Drawing.Point(202, 198);
+            this.rdInactive.Name = "rdInactive";
+            this.rdInactive.Size = new System.Drawing.Size(108, 17);
+            this.rdInactive.TabIndex = 9;
+            this.rdInactive.TabStop = true;
+            this.rdInactive.Text = "Không hoạt động";
+            this.rdInactive.UseVisualStyleBackColor = true;
+            // 
+            // rdActive
+            // 
+            this.rdActive.AutoSize = true;
+            this.rdActive.Checked = true;
+            this.rdActive.Location = new System.Drawing.Point(101, 196);
+            this.rdActive.Name = "rdActive";
+            this.rdActive.Size = new System.Drawing.Size(76, 17);
+            this.rdActive.TabIndex = 8;
+            this.rdActive.TabStop = true;
+            this.rdActive.Text = "Hoạt động";
+            this.rdActive.UseVisualStyleBackColor = true;
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Location = new System.Drawing.Point(22, 196);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(61, 13);
+            this.lblStatus.TabIndex = 54;
+            this.lblStatus.Text = "Trạng thái :";
+            // 
+            // txtDescription
+            // 
+            this.txtDescription.Location = new System.Drawing.Point(420, 154);
+            this.txtDescription.Multiline = true;
+            this.txtDescription.Name = "txtDescription";
+            this.txtDescription.Size = new System.Drawing.Size(189, 55);
+            this.txtDescription.TabIndex = 7;
+            this.txtDescription.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(336, 154);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(37, 13);
+            this.label8.TabIndex = 52;
+            this.label8.Text = "Mô tả:";
+            // 
+            // cbKhuVuc
+            // 
+            this.cbKhuVuc.FormattingEnabled = true;
+            this.cbKhuVuc.Location = new System.Drawing.Point(101, 151);
+            this.cbKhuVuc.Name = "cbKhuVuc";
+            this.cbKhuVuc.Size = new System.Drawing.Size(186, 21);
+            this.cbKhuVuc.TabIndex = 3;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(17, 158);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(50, 13);
+            this.label9.TabIndex = 51;
+            this.label9.Text = "Khu vực:";
             // 
             // groupBox3
             // 
@@ -160,14 +226,14 @@
             this.cbChannel.Location = new System.Drawing.Point(400, 19);
             this.cbChannel.Name = "cbChannel";
             this.cbChannel.Size = new System.Drawing.Size(186, 21);
-            this.cbChannel.TabIndex = 46;
+            this.cbChannel.TabIndex = 0;
             // 
             // txtLng
             // 
             this.txtLng.Location = new System.Drawing.Point(420, 114);
             this.txtLng.Name = "txtLng";
             this.txtLng.Size = new System.Drawing.Size(186, 20);
-            this.txtLng.TabIndex = 45;
+            this.txtLng.TabIndex = 6;
             // 
             // label4
             // 
@@ -183,7 +249,7 @@
             this.txtLat.Location = new System.Drawing.Point(101, 114);
             this.txtLat.Name = "txtLat";
             this.txtLat.Size = new System.Drawing.Size(186, 20);
-            this.txtLat.TabIndex = 43;
+            this.txtLat.TabIndex = 2;
             // 
             // label3
             // 
@@ -199,7 +265,7 @@
             this.txtLocation.Location = new System.Drawing.Point(420, 71);
             this.txtLocation.Name = "txtLocation";
             this.txtLocation.Size = new System.Drawing.Size(186, 20);
-            this.txtLocation.TabIndex = 41;
+            this.txtLocation.TabIndex = 5;
             // 
             // label2
             // 
@@ -215,7 +281,7 @@
             this.txtMaTram.Location = new System.Drawing.Point(420, 28);
             this.txtMaTram.Name = "txtMaTram";
             this.txtMaTram.Size = new System.Drawing.Size(186, 20);
-            this.txtMaTram.TabIndex = 39;
+            this.txtMaTram.TabIndex = 4;
             // 
             // label1
             // 
@@ -231,7 +297,7 @@
             this.txtTenTram.Location = new System.Drawing.Point(101, 71);
             this.txtTenTram.Name = "txtTenTram";
             this.txtTenTram.Size = new System.Drawing.Size(186, 20);
-            this.txtTenTram.TabIndex = 37;
+            this.txtTenTram.TabIndex = 1;
             // 
             // lblDeviceName
             // 
@@ -248,7 +314,7 @@
             this.cbGroup.Location = new System.Drawing.Point(101, 32);
             this.cbGroup.Name = "cbGroup";
             this.cbGroup.Size = new System.Drawing.Size(186, 21);
-            this.cbGroup.TabIndex = 34;
+            this.cbGroup.TabIndex = 0;
             // 
             // lblRole
             // 
@@ -259,108 +325,36 @@
             this.lblRole.TabIndex = 35;
             this.lblRole.Text = "Group:";
             // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(12, 329);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(76, 32);
+            this.btnCancel.TabIndex = 1;
+            this.btnCancel.Text = "Trở về";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(109, 329);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(81, 32);
+            this.btnSave.TabIndex = 0;
+            this.btnSave.Text = "Lưu";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::MVCView.Properties.Resources.w0000027;
+            this.pictureBox1.BackgroundImage = global::MVCView.Properties.Resources._2017_06_25_7_04_46;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.Image = global::MVCView.Properties.Resources._2017_06_25_7_04_46;
             this.pictureBox1.Location = new System.Drawing.Point(12, 22);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(190, 229);
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
-            // 
-            // btnUpdload
-            // 
-            this.btnUpdload.Location = new System.Drawing.Point(12, 257);
-            this.btnUpdload.Name = "btnUpdload";
-            this.btnUpdload.Size = new System.Drawing.Size(75, 23);
-            this.btnUpdload.TabIndex = 3;
-            this.btnUpdload.Text = "Upload...";
-            this.btnUpdload.UseVisualStyleBackColor = true;
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.Location = new System.Drawing.Point(12, 362);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 4;
-            this.btnCancel.Text = "Hủy";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            // 
-            // btnSave
-            // 
-            this.btnSave.Location = new System.Drawing.Point(107, 362);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(75, 23);
-            this.btnSave.TabIndex = 5;
-            this.btnSave.Text = "Lưu";
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // txtDescription
-            // 
-            this.txtDescription.Location = new System.Drawing.Point(420, 154);
-            this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(186, 20);
-            this.txtDescription.TabIndex = 53;
-            this.txtDescription.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(336, 154);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(37, 13);
-            this.label8.TabIndex = 52;
-            this.label8.Text = "Mô tả:";
-            // 
-            // cbKhuVuc
-            // 
-            this.cbKhuVuc.FormattingEnabled = true;
-            this.cbKhuVuc.Location = new System.Drawing.Point(101, 151);
-            this.cbKhuVuc.Name = "cbKhuVuc";
-            this.cbKhuVuc.Size = new System.Drawing.Size(186, 21);
-            this.cbKhuVuc.TabIndex = 50;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(17, 158);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(50, 13);
-            this.label9.TabIndex = 51;
-            this.label9.Text = "Khu vực:";
-            // 
-            // rdInactive
-            // 
-            this.rdInactive.AutoSize = true;
-            this.rdInactive.Location = new System.Drawing.Point(516, 196);
-            this.rdInactive.Name = "rdInactive";
-            this.rdInactive.Size = new System.Drawing.Size(108, 17);
-            this.rdInactive.TabIndex = 56;
-            this.rdInactive.TabStop = true;
-            this.rdInactive.Text = "Không hoạt động";
-            this.rdInactive.UseVisualStyleBackColor = true;
-            // 
-            // rdActive
-            // 
-            this.rdActive.AutoSize = true;
-            this.rdActive.Checked = true;
-            this.rdActive.Location = new System.Drawing.Point(415, 194);
-            this.rdActive.Name = "rdActive";
-            this.rdActive.Size = new System.Drawing.Size(76, 17);
-            this.rdActive.TabIndex = 55;
-            this.rdActive.TabStop = true;
-            this.rdActive.Text = "Hoạt động";
-            this.rdActive.UseVisualStyleBackColor = true;
-            // 
-            // lblStatus
-            // 
-            this.lblStatus.AutoSize = true;
-            this.lblStatus.Location = new System.Drawing.Point(336, 194);
-            this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(61, 13);
-            this.lblStatus.TabIndex = 54;
-            this.lblStatus.Text = "Trạng thái :";
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // FrmDetailStation
             // 
@@ -369,7 +363,6 @@
             this.ClientSize = new System.Drawing.Size(906, 515);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnCancel);
-            this.Controls.Add(this.btnUpdload);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.groupBox2);
             this.Name = "FrmDetailStation";
@@ -407,7 +400,6 @@
         private System.Windows.Forms.TextBox txtTenTram;
         private System.Windows.Forms.Label lblDeviceName;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button btnUpdload;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.TextBox txtDescription;

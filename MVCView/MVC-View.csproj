@@ -220,6 +220,8 @@
   <ItemGroup>
     <None Include="Resources\12295337_541123546039978_7586198331169351249_n.jpg" />
     <None Include="Resources\18010819_1215718668536747_4705220284574963347_n.jpg" />
+    <None Include="Resources\Default_Site_avatar.jpg" />
+    <None Include="Resources\2017-06-25_7-04-46.png" />
     <Content Include="Resources\delete.jpg" />
     <None Include="Resources\editIcon1.png" />
     <None Include="Resources\delete.png" />

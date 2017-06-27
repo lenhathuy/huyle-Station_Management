@@ -12,6 +12,7 @@ using GMap.NET.WindowsForms.ToolTips;
 using GMap.NET.ObjectModel;
 using System.Drawing;
 using System.Linq;
+using System.Text;
 
 namespace MVCView
 {
@@ -22,6 +23,10 @@ namespace MVCView
         ObservableCollection<GMapMarker> Markers;
         GMarkerGoogle currentMarker = null;
         GMapMarker currentMarkerMap = null;
+
+        float apsuat = 33;
+        float luuluong = 2450;
+        double Battery = 12.5;
 
         public Test()
         {
@@ -36,7 +41,7 @@ namespace MVCView
         {
             Markers = new ObservableCollection<GMapMarker>();
             setUpMap();
-            loadTreeView();    
+            loadTreeView(string.Empty);    
         }
 
         private void setUpMap()
@@ -50,7 +55,7 @@ namespace MVCView
             this.gmap.DragButton = MouseButtons.Left;
         }
 
-        private void loadTreeView()
+        private void loadTreeView(string nameStation)
         {
             try
             {
@@ -67,7 +72,7 @@ namespace MVCView
                     parentNode.Tag = dr.ItemArray[2].ToString();
 
                     tvListTram.Nodes.Add(parentNode);
-                    addChildNode(parentNode);
+                    addGroupNode(parentNode, nameStation);
 
                 }
 
@@ -82,26 +87,64 @@ namespace MVCView
             
         }
 
-        private void addChildNode(TreeNode parentNode)
+        private void addGroupNode(TreeNode parentNode, string nameStation)
         {
-            String sqlSelectKV = " SELECT ID, TENTB, Latitude, Longitude FROM DANHSACHTB tb WHERE tb.MAKV = '"  + parentNode.Name.ToString() + "'";
+            String sqlSelectKV = " SELECT sg.ID, sg.Name FROM Station s left join StationGroup sg on sg.ID = s.StationGroupID WHERE s.KV_ID = '" + parentNode.Name.ToString() + "' group by sg.ID, sg.Name";
             //String sqlSelectKV = " SELECT * FROM DANHSACHTB tb ";
-            DataTable dtChild = PDatatable(sqlSelectKV.ToString()); 
+            DataTable dtChild = PDatatable(sqlSelectKV.ToString());
+
+            TreeNode childNode;
+            foreach (DataRow dr in dtChild.Rows)
+            {
+                if (parentNode == null)
+                {
+                    childNode = tvListTram.Nodes.Add(dr["Name"].ToString());
+                }
+                else
+                {
+                    childNode = new TreeNode();
+                    childNode.Tag = dr["ID"].ToString();
+                    childNode.Name = dr["ID"].ToString();
+                    childNode.Text = dr["Name"].ToString();
+                    parentNode.Nodes.Add(childNode);
+                    addChildNode(childNode, nameStation);
+                }
+
+            }
+        }
+
+
+        private void addChildNode(TreeNode parentNode, string nameStation)
+        {
+            StringBuilder sqlSelectKV = new StringBuilder(" SELECT ID, Name, Lat, Lng FROM Station tb WHERE tb.StationGroupID = '"  + parentNode.Name.ToString() + "'");
+            if (!string.IsNullOrEmpty(nameStation)) {
+                sqlSelectKV.Append("  AND tb.Name Like @name ");
+            }
+            //String sqlSelectKV = " SELECT * FROM DANHSACHTB tb ";
+            DataTable dtChild = new DataTable();
+            SqlParameter name = new SqlParameter("@name", SqlDbType.VarChar);
+            name.Value = "%" + nameStation + "%";
+
+            SqlCommand query = new SqlCommand(sqlSelectKV.ToString());
+            query.Parameters.Add(name);
+            query.Connection = con;
+            SqlDataAdapter da = new SqlDataAdapter(query);
+            da.Fill(dtChild);
             
             TreeNode childNode;
             foreach (DataRow dr in dtChild.Rows)
             {
                 if (parentNode == null)
                 {
-                    childNode = tvListTram.Nodes.Add(dr["TENTB"].ToString());
+                    childNode = tvListTram.Nodes.Add(dr["Name"].ToString());
                 }
                 else {                    
                     childNode = new TreeNode();
                     childNode.Tag = dr["ID"].ToString();
                     childNode.Name = dr["ID"].ToString();
-                    childNode.Text = dr["TENTB"].ToString();
+                    childNode.Text = dr["Name"].ToString();
                     parentNode.Nodes.Add(childNode);
-                    loadOnMap(dr["ID"].ToString(), dr["Latitude"].ToString(), dr["Longitude"].ToString());
+                    loadOnMap(dr["ID"].ToString(), dr["Lat"].ToString(), dr["Lng"].ToString());
                     //addChildNode(childNode);
                 }
                  
@@ -109,7 +152,11 @@ namespace MVCView
         }
 
         private void loadOnMap(String id, String lat, String lng)
-        {         
+        {
+            apsuat = apsuat + 10;
+            luuluong = luuluong + 30;
+            Battery = Battery - 0.5;
+
             GMapOverlay item = new GMapOverlay("markers");
 
             GMarkerGoogle markerone = new GMarkerGoogle(new PointLatLng(Double.Parse(lat), Double.Parse(lng)), GMarkerGoogleType.green)
@@ -128,7 +175,7 @@ namespace MVCView
             markerone.ToolTip.Foreground = Brushes.White;
             markerone.ToolTip.Stroke = Pens.Black;
             markerone.ToolTip.TextPadding = new Size(20, 20);
-            markerone.ToolTipText = "Ap Suat : 11223 \r\n Luu luong: 1700 \r\n Battery : 12 VDC";
+            markerone.ToolTipText = "Áp suất : " + apsuat + " BAR" + "\r\n Lưu lượng: " + luuluong  + " m3/h" + "\r\n Battery :" + Battery + " VDC";
             markerone.ToolTip.Format.Alignment = StringAlignment.Center;
            
             item.Markers.Add(markerone);
@@ -262,12 +309,25 @@ namespace MVCView
                 currentMarkerMap.ToolTip.Fill = Brushes.Gray;
             }
 
-            var result = Markers.Where(x => x.Tag == e.Node.Tag).FirstOrDefault();
+            var result = Markers.Where(x => x.Tag.Equals(e.Node.Tag)).FirstOrDefault();
             if (result != null) {
                 currentMarker = (GMarkerGoogle)result;
                 result.ToolTip.Fill = Brushes.Brown;
                 this.gmap.Position = new PointLatLng(result.Position.Lat, result.Position.Lng);
             }
+
+            tvListTram.SelectedNode = e.Node;
+            tvListTram.Focus();
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.gmap.Overlays.Clear() ;
+            apsuat = 33;
+            luuluong = 2450;
+            Battery = 12.5;
+            loadTreeView(textBox1.Text);  
         }
     }
 }

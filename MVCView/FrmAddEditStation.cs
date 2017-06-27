@@ -339,6 +339,8 @@ namespace MVCView
             InsertStationDeviceChannel(stationId, cbxChannel8Type1, cbxDevice8Type1, 8, 8);
             InsertStationDeviceChannel(stationId, cbxChannel8Type2, cbxDevice8Type2, 8, 9);
             InsertStationDeviceChannel(stationId, cbxChannel8Type3, cbxDevice8Type3, 8, 10);
+
+            MessageBox.Show("Cấu hình thành công", "Thông báo");
         }
 
         private void DeleteStationDeviceChannel(int stationId)

@@ -158,7 +158,7 @@ namespace MVCView.Metadta.Device
         private void btnSave_Click(object sender, EventArgs e)
         {
             OpenConnection();
-            if (device.ID != null && device.ID > 0)
+            if (device.ID > 0)
             {
                 ID = device.ID;
                 Edit();
@@ -181,6 +181,7 @@ namespace MVCView.Metadta.Device
             }
             listIdAdd.Clear();
             listIdDelete.Clear();
+            this.frmDeviceList.LoadDevice();
             MessageBox.Show("Cập nhật Thiết bị thành công", "Thông báo");
             CloseConnection();
         }
@@ -246,7 +247,7 @@ namespace MVCView.Metadta.Device
             myCommand.Parameters.Add(setupDate);
             myCommand.Parameters.Add(createdDate);
             myCommand.Parameters.Add(receiptDate);
-            ID = myCommand.ExecuteNonQuery();
+            ID  = (int)myCommand.ExecuteScalar();
         }
 
         private void OpenConnection()
@@ -300,7 +301,7 @@ namespace MVCView.Metadta.Device
 
         private void FrmEditDevice_FormClosed(object sender, FormClosedEventArgs e)
         {
-            this.frmDeviceList.LoadDevice();
+           
         }
     }
 }
