@@ -96,31 +96,31 @@ namespace MVCView.Metadta.Device
             StringBuilder mySql = new StringBuilder(" SELECT * ");
             mySql.Append(" FROM Device d where 1 = 1");
 
-            //if (!string.IsNullOrEmpty(txtName.Text))
-            //{
-            //    mySql.Append("  AND d.Name Like @name ");
-            //}
+            if (!string.IsNullOrEmpty(txtName.Text))
+            {
+                mySql.Append("  AND d.Name Like @name ");
+            }
 
-            //if (!string.IsNullOrEmpty(txtCode.Text))
-            //{
-            //    mySql.Append("  AND d.Code Like @code ");
-            //}
+            if (!string.IsNullOrEmpty(txtCode.Text))
+            {
+                mySql.Append("  AND d.Code Like @code ");
+            }
 
             SqlCommand query = new SqlCommand(mySql.ToString());
 
-            //if (!string.IsNullOrEmpty(txtName.Text))
-            //{
-            //    SqlParameter name = new SqlParameter("@name", SqlDbType.VarChar);
-            //    name.Value = "%" + txtName.Text + "%";
-            //    query.Parameters.Add(name);
-            //}
+            if (!string.IsNullOrEmpty(txtName.Text))
+            {
+                SqlParameter name = new SqlParameter("@name", SqlDbType.VarChar);
+                name.Value = "%" + txtName.Text + "%";
+                query.Parameters.Add(name);
+            }
 
-            //if (!string.IsNullOrEmpty(txtCode.Text))
-            //{
-            //    SqlParameter code = new SqlParameter("@code", SqlDbType.VarChar);
-            //    code.Value = "%" + txtCode.Text + "%";
-            //    query.Parameters.Add(code);
-            //}
+            if (!string.IsNullOrEmpty(txtCode.Text))
+            {
+                SqlParameter code = new SqlParameter("@code", SqlDbType.VarChar);
+                code.Value = "%" + txtCode.Text + "%";
+                query.Parameters.Add(code);
+            }
 
             query.Connection = con;
             SqlDataAdapter da = new SqlDataAdapter(query);
@@ -181,18 +181,8 @@ namespace MVCView.Metadta.Device
         {            
             try
             {
-
-               // LoadDevice();
-
-                string name = txtName.Text;
-                string code = txtCode.Text;
-
-
-                dgvList.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-                bsDevice.Filter = string.Format("{0} = '{1}'", "Name", name);
-                bsDevice.Filter = string.Format("{0} = '{1}'", "Code", code);
-
-                dgvList.Refresh();
+               LoadDevice();            
+             
                 //MailMessage mail = new MailMessage();
                 //SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
 
