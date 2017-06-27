@@ -28,10 +28,14 @@ namespace MVCView
         private string emailFrom = "bknight092@gmail.com";
         private string password = "12345678x@X";
         private string subject = "Alert";
+        private BackgroundWorker backgroundWorker = new BackgroundWorker();
 
         public Home()
         {
             InitializeComponent();
+            backgroundWorker.DoWork += backgroundWorker_DoWork;
+            backgroundWorker.ProgressChanged += backgroundWorker_ProgressChanged;
+            backgroundWorker.WorkerReportsProgress = true;
         }
 
         private void menuTram_MapView_Click(object sender, EventArgs e)
@@ -66,7 +70,8 @@ namespace MVCView
 
         private void TimerEventProcessor(object sender, EventArgs e)
         {
-            GetNotify();
+            //GetNotify();
+            backgroundWorker.RunWorkerAsync();
         }
 
         private void menuMetadata_User_Click(object sender, EventArgs e)
@@ -144,6 +149,15 @@ namespace MVCView
                     }
                 }
             }
+        }
+
+        private void backgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+        }
+
+        private void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            GetNotify();
         }
     }
 }
