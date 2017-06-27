@@ -30,15 +30,16 @@
         {
             this.menuHome = new System.Windows.Forms.MenuStrip();
             this.menuDashboard = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuMetadata = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuMetadata1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuMetadata_User = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuMetadata_Device = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuMetadata_Role = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStationInfo = new System.Windows.Forms.ToolStripMenuItem();
             this.menu_Tram = new System.Windows.Forms.ToolStripMenuItem();
             this.menuTram_MapView = new System.Windows.Forms.ToolStripMenuItem();
             this.menuTram_TableView = new System.Windows.Forms.ToolStripMenuItem();
             this.menuSetting = new System.Windows.Forms.ToolStripMenuItem();
             this.menuSetting_Alert = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuMetadata_Device1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuHome.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -46,9 +47,10 @@
             // 
             this.menuHome.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuDashboard,
-            this.menuMetadata,
+            this.menuMetadata1,
             this.menu_Tram,
-            this.menuSetting});
+            this.menuSetting,
+            this.menuMetadata_Device1});
             this.menuHome.Location = new System.Drawing.Point(0, 0);
             this.menuHome.Name = "menuHome";
             this.menuHome.Size = new System.Drawing.Size(720, 24);
@@ -61,15 +63,15 @@
             this.menuDashboard.Size = new System.Drawing.Size(76, 20);
             this.menuDashboard.Text = "Dashboard";
             // 
-            // menuMetadata
+            // menuMetadata1
             // 
-            this.menuMetadata.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuMetadata1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuMetadata_User,
-            this.menuMetadata_Device,
+            this.menuMetadata_Role,
             this.menuStationInfo});
-            this.menuMetadata.Name = "menuMetadata";
-            this.menuMetadata.Size = new System.Drawing.Size(122, 20);
-            this.menuMetadata.Text = "Quản lý dữ liệu nền";
+            this.menuMetadata1.Name = "menuMetadata1";
+            this.menuMetadata1.Size = new System.Drawing.Size(122, 20);
+            this.menuMetadata1.Text = "Quản lý dữ liệu nền";
             // 
             // menuMetadata_User
             // 
@@ -78,12 +80,12 @@
             this.menuMetadata_User.Text = "Quản lý người dùng";
             this.menuMetadata_User.Click += new System.EventHandler(this.menuMetadata_User_Click);
             // 
-            // menuMetadata_Device
+            // menuMetadata_Role
             // 
-            this.menuMetadata_Device.Name = "menuMetadata_Device";
-            this.menuMetadata_Device.Size = new System.Drawing.Size(180, 22);
-            this.menuMetadata_Device.Text = "Quản lý thiết bị";
-            this.menuMetadata_Device.Click += new System.EventHandler(this.menuMetadata_Device_Click);
+            this.menuMetadata_Role.Name = "menuMetadata_Role";
+            this.menuMetadata_Role.Size = new System.Drawing.Size(180, 22);
+            this.menuMetadata_Role.Text = "Quản lý quyền";
+            this.menuMetadata_Role.Click += new System.EventHandler(this.menuMetadata_Role_Click);
             // 
             // menuStationInfo
             // 
@@ -130,6 +132,13 @@
             this.menuSetting_Alert.Text = "Báo động";
             this.menuSetting_Alert.Click += new System.EventHandler(this.menuSetting_Alert_Click);
             // 
+            // menuMetadata_Device1
+            // 
+            this.menuMetadata_Device1.Name = "menuMetadata_Device1";
+            this.menuMetadata_Device1.Size = new System.Drawing.Size(100, 20);
+            this.menuMetadata_Device1.Text = "Quản lý thiết bị";
+            this.menuMetadata_Device1.Click += new System.EventHandler(this.menuMetadata_Device_Click);
+            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -151,14 +160,15 @@
 
         private System.Windows.Forms.MenuStrip menuHome;
         private System.Windows.Forms.ToolStripMenuItem menuDashboard;
-        private System.Windows.Forms.ToolStripMenuItem menuMetadata;
+        private System.Windows.Forms.ToolStripMenuItem menuMetadata1;
         private System.Windows.Forms.ToolStripMenuItem menuMetadata_User;
-        private System.Windows.Forms.ToolStripMenuItem menuMetadata_Device;
+        private System.Windows.Forms.ToolStripMenuItem menuMetadata_Role;
         private System.Windows.Forms.ToolStripMenuItem menuStationInfo;
         private System.Windows.Forms.ToolStripMenuItem menu_Tram;
         private System.Windows.Forms.ToolStripMenuItem menuTram_MapView;
         private System.Windows.Forms.ToolStripMenuItem menuTram_TableView;
         private System.Windows.Forms.ToolStripMenuItem menuSetting;
         private System.Windows.Forms.ToolStripMenuItem menuSetting_Alert;
+        private System.Windows.Forms.ToolStripMenuItem menuMetadata_Device1;
     }
 }

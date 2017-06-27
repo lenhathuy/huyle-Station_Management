@@ -53,9 +53,46 @@ namespace MVCView
             dgvList.Columns[7].HeaderText = "Ngày tạo";
         }
 
+        private int GetChannelDevice(int channelId, int deviceId, int type)
+        {
+            DataTable dataTable = new DataTable();
+            SqlConnection conn = new SqlConnection(cs);
+            StringBuilder sql = new StringBuilder("select top 1 * from [dbo].[ChannelDevice] ");
+            sql.Append("where ChannelId = @channelId ");
+            sql.Append("and DeviceId = @deviceId");
+            sql.Append(" and typeId = @typeId ");
+            SqlCommand cmd = new SqlCommand(sql.ToString(), conn);
+            SqlParameter channel = cmd.Parameters.Add("@channelId", SqlDbType.Int);
+            channel.Value = channelId;
+            SqlParameter device = cmd.Parameters.Add("@deviceId", SqlDbType.Int);
+            device.Value = deviceId;
+            SqlParameter typeId = cmd.Parameters.Add("@typeId", SqlDbType.Int);
+            typeId.Value = type;
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            try
+            {
+                conn.Open();
+                da.Fill(dataTable);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                if (conn.State == ConnectionState.Open)
+                    conn.Close();
+            }
+
+            var row = dataTable.Rows[0];
+            var result = Int32.Parse(row["ID"].ToString());
+            return result;
+        }
+
         private void loadNotify()
         {
-            StringBuilder mySql = new StringBuilder(" SELECT n.ID, n.Name, d.Name, n.ChannelID, n.AlertLevel, n.MessageType, n.Status ,n.createdDate ");
+            StringBuilder mySql = new StringBuilder(" SELECT n.ID, n.Name, d.Name, n.ChannelID, n.AlertLevel, n.MessageType, n.Status , n.createdDate ");
             mySql.Append(" FROM Notify n ");
             mySql.Append(" Left Join Device d ON d.ID = n.DeviceID ");
             SqlConnection con = new SqlConnection(cs);  
@@ -150,62 +187,72 @@ namespace MVCView
         {
             try
             {
-                SqlCommand myCommand = new SqlCommand(" INSERT Notify (Name, LowFLow, LowPressure, LowBattery, HighFlow , HighPressure, HighBattery, MessageType, AlertType, AlertLevel, Status, ChannelID, DeviceID,CreatedDate)  VALUES (@Name, @LowFLow, @LowPressure, @LowBattery, @HighFlow , @HighPressure, @HighBattery, @MessageType, @AlertType, @AlertLevel, @Status, @ChannelID, @DeviceID, @CreatedDate) ");
+                SqlCommand myCommand = new SqlCommand(" INSERT Notify (Name,  MessageType, AlertType, AlertLevel, Status,CreatedDate) OUTPUT Inserted.ID  VALUES (@Name, @MessageType, @AlertType, @AlertLevel, @Status, @CreatedDate) ");
                 SqlConnection con = new SqlConnection(cs);
                 con.Open();
                 
                 myCommand.Connection = con;
 
-                //Name, LowFLow, LowPressure, LowBattery, HighFlow , HighPressure, HighBattery, MessageType, AlertType, AlertLevel, Status, ChannelID, DeviceID,CreatedDate
-
                 SqlParameter name = new SqlParameter("@Name", SqlDbType.VarChar);
-                SqlParameter LowFLow = new SqlParameter("@LowFLow", SqlDbType.Float);
-                SqlParameter LowPressure = new SqlParameter("@LowPressure", SqlDbType.Float);
-                SqlParameter LowBattery = new SqlParameter("@LowBattery", SqlDbType.Float);
-                SqlParameter HighFlow = new SqlParameter("@HighFlow", SqlDbType.Float);
-                SqlParameter HighPressure = new SqlParameter("@HighPressure", SqlDbType.Float);
-                SqlParameter HighBattery = new SqlParameter("@HighBattery", SqlDbType.Float);
+                //SqlParameter LowFLow = new SqlParameter("@LowFLow", SqlDbType.Float);
+                //SqlParameter LowPressure = new SqlParameter("@LowPressure", SqlDbType.Float);
+                //SqlParameter LowBattery = new SqlParameter("@LowBattery", SqlDbType.Float);
+                //SqlParameter HighFlow = new SqlParameter("@HighFlow", SqlDbType.Float);
+                //SqlParameter HighPressure = new SqlParameter("@HighPressure", SqlDbType.Float);
+                //SqlParameter HighBattery = new SqlParameter("@HighBattery", SqlDbType.Float);
 
                 SqlParameter AlertType = new SqlParameter("@AlertType", SqlDbType.Int);
                 SqlParameter AlertLevel = new SqlParameter("@AlertLevel", SqlDbType.Int);
                 SqlParameter MessageType = new SqlParameter("@MessageType", SqlDbType.VarChar);
                 SqlParameter Status = new SqlParameter("@Status", SqlDbType.Int);
-                SqlParameter ChannelID = new SqlParameter("@ChannelID", SqlDbType.Int);
-                SqlParameter DeviceID = new SqlParameter("@DeviceID", SqlDbType.Int);
+                //SqlParameter ChannelID = new SqlParameter("@ChannelID", SqlDbType.Int);
+                //SqlParameter DeviceID = new SqlParameter("@DeviceID", SqlDbType.Int);
                 SqlParameter createdDate = new SqlParameter("@CreatedDate", SqlDbType.DateTime);
 
                 name.Value = txtName.Text;
-                LowFLow.Value = float.Parse(txtLowApLuc.Text);
-                LowPressure.Value = float.Parse(txtLowLuuLuong.Text);
-                LowBattery.Value = float.Parse(txtLowBattery.Text);
-                HighFlow.Value = float.Parse(txtHighApLuc.Text);
-                HighPressure.Value = float.Parse(txtHighLuuLuong.Text);
-                HighBattery.Value = float.Parse(txtHighBattery.Text);
+                //LowFLow.Value = float.Parse(txtLowApLuc.Text);
+                //LowPressure.Value = float.Parse(txtLowLuuLuong.Text);
+                //LowBattery.Value = float.Parse(txtLowBattery.Text);
+                //HighFlow.Value = float.Parse(txtHighApLuc.Text);
+                //HighPressure.Value = float.Parse(txtHighLuuLuong.Text);
+                //HighBattery.Value = float.Parse(txtHighBattery.Text);
                 AlertType.Value = ((TypeAlertModel)cbType.SelectedValue).ID;
                 AlertLevel.Value = ((TypeAlertModel)cbLevelAlert.SelectedValue).ID;
                 MessageType.Value = ((TypeAlertModel)cbTypeNotify.SelectedValue).Display; 
                 Status.Value = rdActive.Checked ? 1 : 0;
-                DeviceID.Value = cbDevice.SelectedValue;
-                ChannelID.Value = ((ChannelModel)cbKenh.SelectedValue).ID;
+                //DeviceID.Value = cbDevice.SelectedValue;
+                //ChannelID.Value = ((ChannelModel)cbKenh.SelectedValue).ID;
                 createdDate.Value = DateTime.Now;
 
 
                 myCommand.Parameters.Add(name);
-                myCommand.Parameters.Add(LowFLow);
-                myCommand.Parameters.Add(LowPressure);
-                myCommand.Parameters.Add(LowBattery);
-                myCommand.Parameters.Add(HighFlow);
-                myCommand.Parameters.Add(HighBattery);
-                myCommand.Parameters.Add(HighPressure);
+                //myCommand.Parameters.Add(LowFLow);
+                //myCommand.Parameters.Add(LowPressure);
+                //myCommand.Parameters.Add(LowBattery);
+                //myCommand.Parameters.Add(HighFlow);
+                //myCommand.Parameters.Add(HighBattery);
+                //myCommand.Parameters.Add(HighPressure);
                 myCommand.Parameters.Add(AlertType);
                 myCommand.Parameters.Add(AlertLevel);
                 myCommand.Parameters.Add(MessageType);
                 myCommand.Parameters.Add(Status);
-                myCommand.Parameters.Add(DeviceID);
-                myCommand.Parameters.Add(ChannelID);
+                //myCommand.Parameters.Add(DeviceID);
+                //myCommand.Parameters.Add(ChannelID);
                 myCommand.Parameters.Add(createdDate);
 
-                myCommand.ExecuteNonQuery();
+                int notifyId = (int)myCommand.ExecuteScalar();
+
+                int ChannelDeviceID1 = GetChannelDevice(((ChannelModel)cbKenh.SelectedValue).ID, (int)cbDevice.SelectedValue, 8);
+
+                TrackingChannelDevice(ChannelDeviceID1, float.Parse(txtLowApLuc.Text), float.Parse(txtHighApLuc.Text), notifyId);
+
+                int ChannelDeviceID2 = GetChannelDevice(((ChannelModel)cbKenh.SelectedValue).ID, (int)cbDevice.SelectedValue, 9);
+
+                TrackingChannelDevice(ChannelDeviceID2, float.Parse(txtLowLuuLuong.Text), float.Parse(txtHighLuuLuong.Text), notifyId);
+
+                int ChannelDeviceID3 = GetChannelDevice(((ChannelModel)cbKenh.SelectedValue).ID, (int)cbDevice.SelectedValue, 10);
+
+                TrackingChannelDevice(ChannelDeviceID3, float.Parse(txtLowBattery.Text), float.Parse(txtHighBattery.Text), notifyId);
 
                 MessageBox.Show("Thêm sự kiện thành công", "Thông báo");
                 clearData();
@@ -216,6 +263,61 @@ namespace MVCView
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void TrackingChannelDevice(int ChannelDeviceID1, float p1, float p2, int notifyId)
+        {
+            SqlCommand myCommand = new SqlCommand(" INSERT TrackingChannelDevice (ChannelDeviceID,  High, Low, CreatedDate) OUTPUT Inserted.ID  VALUES (@ChannelDeviceID,  @High, @Low, @CreatedDate) ");
+            SqlConnection con = new SqlConnection(cs);
+            con.Open();
+
+            myCommand.Connection = con;
+
+            SqlParameter channelDevice = new SqlParameter("@ChannelDeviceID", SqlDbType.Int);
+            SqlParameter low = new SqlParameter("@High", SqlDbType.Float);
+            SqlParameter high = new SqlParameter("@Low", SqlDbType.Float);
+            SqlParameter createdDate = new SqlParameter("@CreatedDate", SqlDbType.DateTime);
+
+            channelDevice.Value = ChannelDeviceID1;
+            low.Value = p1;
+            high.Value = p2;
+            createdDate.Value = DateTime.Now;
+
+            myCommand.Parameters.Add(channelDevice);
+            myCommand.Parameters.Add(low);
+            myCommand.Parameters.Add(high);
+            myCommand.Parameters.Add(createdDate);
+
+            int TrackingChannelDeviceID = (int)myCommand.ExecuteScalar();
+
+            TrackingNotify(TrackingChannelDeviceID, notifyId);
+        }
+
+        private void TrackingNotify(int TrackingChannelDeviceID, int notifyId)
+        {
+            SqlCommand myCommand = new SqlCommand(" INSERT TrackingNotify (NotifyId,  TrackingChannelDeviceID)  VALUES (@NotifyId,  @TrackingChannelDeviceID) ");
+            SqlConnection con = new SqlConnection(cs);
+            con.Open();
+
+            myCommand.Connection = con;
+
+            SqlParameter noId = new SqlParameter("@NotifyId", SqlDbType.Int);
+            SqlParameter trackId = new SqlParameter("@TrackingChannelDeviceID", SqlDbType.Int);
+
+            noId.Value = TrackingChannelDeviceID;
+            trackId.Value = notifyId;
+
+            myCommand.Parameters.Add(noId);
+            myCommand.Parameters.Add(trackId);
+
+           myCommand.ExecuteNonQuery();
+        }
+
+        private void TrackingChannelDevice(int ChannelDeviceID1)
+        {
+            throw new NotImplementedException();
+        }
+
+        
 
         private void clearData() {
             txtId.Clear();

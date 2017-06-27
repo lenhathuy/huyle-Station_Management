@@ -13,6 +13,7 @@ using GMap.NET.ObjectModel;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using MVCView.ViewModel;
 
 namespace MVCView
 {
@@ -210,28 +211,85 @@ namespace MVCView
 
         private void gmap_OnMarkerClick(GMapMarker item, MouseEventArgs e)
         {
-            if (currentMarker != null)
+            DialogResult dialogResult = MessageBox.Show("Xem chi tiết thông tin trạm !! ", "Thông báo", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
             {
-                currentMarker.ToolTip.Fill = Brushes.Gray;
-            }
+                DataTable dataTable = new DataTable();
+                SqlConnection con = new SqlConnection(cs);
+                SqlCommand com = new SqlCommand(" Select TOP 1 * from Station where ID = @stationID ", con);
 
-            if (currentMarkerMap != null) {
-                currentMarkerMap.ToolTip.Fill = Brushes.Gray;
-            }
-
-            currentMarkerMap = item;
-            item.ToolTip.Fill = Brushes.Brown;
-            this.gmap.Position = new PointLatLng(item.Position.Lat, item.Position.Lng);
-            //Usage    
-            TreeNode itemNode = null;
-            foreach (TreeNode node in tvListTram.Nodes)
-            {
-                itemNode = FromID(item.Tag.ToString(), node);               
-                tvListTram.Focus();
-                if (itemNode != null) {
-                    tvListTram.SelectedNode = itemNode;                    
+                SqlParameter name = new SqlParameter("@stationID", SqlDbType.Int);
+                name.Value = int.Parse(item.Tag.ToString());
+                com.Parameters.Add(name);
+                SqlDataAdapter dataAdapter = new SqlDataAdapter(com);
+                try
+                {
+                    con.Open();
+                    dataAdapter.Fill(dataTable);
                 }
+                catch (Exception)
+                {
+                    throw;
+                }
+                finally
+                {
+                    if (con.State == ConnectionState.Open)
+                        con.Close();
+                }
+
+                if (dataTable.Rows.Count > 0)
+                {
+                    //totalRecords = dtSource.Rows.Count;  
+                    foreach (DataRow item1 in dataTable.Rows)
+                    {
+                        StationViewModel model = new StationViewModel
+                        {
+                            //Group = item1["Group"].ToString(),
+                            GroupID = int.Parse(item1["StationGroupID"].ToString()),
+                            StationCode = item1["Code"].ToString(),
+                            StationName = item1["Name"].ToString(),
+                            StationLocation = item1["Location"].ToString(),
+                            StationLatitude = float.Parse(item1["Lat"].ToString()),
+                            StationLongtitude = float.Parse(item1["Lng"].ToString()),
+                            StationID = int.Parse(item1["ID"].ToString()),
+                            kvID = item1["KV_ID"].ToString()
+                        };
+                        FrmDetailStation frm = new FrmDetailStation(model, null);
+                        frm.ShowDialog();
+                        break;    
+                    }
+                }
+                
+                
             }
+            else if (dialogResult == DialogResult.No)
+            {
+                //do something else
+            }
+
+
+            //if (currentMarker != null)
+            //{
+            //    currentMarker.ToolTip.Fill = Brushes.Gray;
+            //}
+
+            //if (currentMarkerMap != null) {
+            //    currentMarkerMap.ToolTip.Fill = Brushes.Gray;
+            //}
+
+            //currentMarkerMap = item;
+            //item.ToolTip.Fill = Brushes.Brown;
+            //this.gmap.Position = new PointLatLng(item.Position.Lat, item.Position.Lng);
+            ////Usage    
+            //TreeNode itemNode = null;
+            //foreach (TreeNode node in tvListTram.Nodes)
+            //{
+            //    itemNode = FromID(item.Tag.ToString(), node);               
+            //    tvListTram.Focus();
+            //    if (itemNode != null) {
+            //        tvListTram.SelectedNode = itemNode;                    
+            //    }
+            //}
 
             //var result = tvListTram.Nodes.OfType<TreeNode>()
             //                .FirstOrDefault(node => node.Tag.Equals(item.Tag));

@@ -24,6 +24,7 @@ namespace MVCView
             InitializeComponent();
         }
 
+
         private void FrmDetailStation_Load(object sender, EventArgs e)
         {
             txtMaTram.Text = station.StationCode;
@@ -134,7 +135,8 @@ namespace MVCView
                     {
                         Add();
                     }
-                    this.frmStation.GetStation(string.Empty);
+                    if(this.frmStation != null)
+                        this.frmStation.GetStation(string.Empty);
                 }
             }
             catch (Exception ex)

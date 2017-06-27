@@ -72,5 +72,13 @@ namespace MVCView
             frm.Dock = DockStyle.Fill;
             frm.Show();     
         }
+
+        private void menuMetadata_Role_Click(object sender, EventArgs e)
+        {
+            FrmRole frm = new FrmRole();
+            frm.MdiParent = this;
+            frm.Dock = DockStyle.Fill;
+            frm.Show();     
+        }
     }
 }

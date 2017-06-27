@@ -399,7 +399,7 @@
             this.Controls.Add(this.dgvList);
             this.Controls.Add(this.grpDetails);
             this.Name = "FrmUser";
-            this.Text = "s";
+            this.Text = "Quản lý người dùng";
             this.Load += new System.EventHandler(this.FrmUser_Load);
             this.grpDetails.ResumeLayout(false);
             this.grpDetails.PerformLayout();

@@ -27,12 +27,20 @@ namespace MVCView
                 con = new SqlConnection(cs);
                 disable();
                 loadRole();
-                loadUser();             
+                loadUser();
+
+                dgvList.Columns[0].HeaderText = "ID";
+                dgvList.Columns[1].HeaderText = "Tên người dùng";
+                dgvList.Columns[3].HeaderText = "Họ";
+                dgvList.Columns[4].HeaderText = "Tên";
+                dgvList.Columns[5].HeaderText = "Email";
+                dgvList.Columns[6].HeaderText = "Quyền";
+                dgvList.Columns[7].HeaderText = "Ngày tạo";
         }
 
         private void loadUser()
         {
-            StringBuilder mySql = new StringBuilder(" SELECT u.UserID, u.UserName, u.FirstName, u.LastName, u.email, r.name, u.createdDate  ");
+            StringBuilder mySql = new StringBuilder(" SELECT u.UserID, u.UserName, u.Password, u.FirstName, u.LastName, u.email, r.name, u.createdDate  ");
             mySql.Append(" FROM USERS u ");
             mySql.Append(" LEFT JOIN ROLE r ON r.ROLEID = u.ROLEID ");
             SqlCommand query = new SqlCommand(mySql.ToString(), con);
@@ -63,6 +71,8 @@ namespace MVCView
             bs = new BindingSource();
             bs.DataSource = dt;
             bindingNavigator1.BindingSource = bs;
+
+            dgvList.Columns["Password"].Visible = false;
             dgvList.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader);
         }
 
@@ -75,12 +85,14 @@ namespace MVCView
                 string sql = "select RoleID, Name from Role ";
                 SqlCommand query = new SqlCommand(sql);
                 query.Connection = con;
+                con.Open();
                 SqlDataAdapter da = new SqlDataAdapter(query);       
                 DataSet ds = new DataSet();
                 da.Fill(ds, "Role");
                 cbRole.DisplayMember = "Name";
                 cbRole.ValueMember = "RoleID";
                 cbRole.DataSource = ds.Tables["Role"];
+                con.Close();
             }
             catch (Exception ex)
             {
@@ -167,6 +179,7 @@ namespace MVCView
         {
             SqlCommand myCommand = new SqlCommand(" UPDATE Users Set UserName = @UserName, FirstName = @FirstName, LastName = @LastName, Email = @Email, RoleId = @RoleId Where UserId = @UserId");
             myCommand.Connection = con;
+            con.Open();
 
             SqlParameter uName = new SqlParameter("@Username", SqlDbType.VarChar);
             SqlParameter fName = new SqlParameter("@FirstName", SqlDbType.VarChar);
@@ -189,6 +202,7 @@ namespace MVCView
             myCommand.Parameters.Add(userId);
             myCommand.Parameters.Add(roleId);
             myCommand.ExecuteNonQuery();
+            con.Close();
             MessageBox.Show("Sửa User thành công", "Thông báo");
         }
 
@@ -196,6 +210,7 @@ namespace MVCView
         {
             SqlCommand myCommand = new SqlCommand(" INSERT INTO Users (UserName, Password, FirstName, LastName, Email, CreatedDate, ROLEID)  VALUES (@UserName, @Password, @FirstName, @LastName, @Email, @CreatedDate, @ROLEID) ");
             myCommand.Connection = con;
+            con.Open();
 
             SqlParameter uName = new SqlParameter("@Username", SqlDbType.VarChar);
             SqlParameter uPassword = new SqlParameter("@Password", SqlDbType.VarChar);
@@ -221,6 +236,7 @@ namespace MVCView
             myCommand.Parameters.Add(createdDate);
             myCommand.Parameters.Add(roleId);
             myCommand.ExecuteNonQuery();
+            con.Close();
             MessageBox.Show("Thêm User thành công", "Thông báo");
         }
 
